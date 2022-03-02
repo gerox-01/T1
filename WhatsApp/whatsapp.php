@@ -13,13 +13,21 @@
 
 <body>
 
+
+    <div class="bg-verde">
+        <div class="container">
+
+        </div>
+    </div>
+
+
     <?php
-    require_once './Tweet/nav.php';
-    $message = $_POST['message'] ?? '';
-    $contacto =$_POST['contacto']?? '';
+    // require_once './Tweet/nav.php';
+    // $message = $_POST['message'] ?? '';
+    // $contacto =$_POST['contacto']?? '';
     ?>
 
-    <form method="post">
+    <!-- <form method="post">
         <div class="form-register">
             <h1>Message</h1>
             <div>
@@ -29,20 +37,20 @@
             <div>
                 <input type="submit" value="Message">
             </div>
-    </form>
+    </form> -->
 
     <?php
-    require_once './Tweet/tools.php';
-    session_start();
+    // require_once './Tweet/tools.php';
+    // session_start();
 
     
-    $message = $_POST['message'] ?? '';
-    $DateAndTime = date('m-d-Y');
+    // $message = $_POST['message'] ?? '';
+    // $DateAndTime = date('m-d-Y');
 
-    if(isset($_POST['message'])){
-        $msg = grabarMessage($_SESSION['username'], $message, $DateAndTime);
-        echo "$msg";
-    }
+    // if(isset($_POST['message'])){
+    //     $msg = grabarMessage($_SESSION['username'], $message, $DateAndTime);
+    //     echo "$msg";
+    // }
 
 
     ?>
