@@ -73,6 +73,21 @@ function grabarTweet($usuario, $tweet, $fecha){
     fclose($fp);
 }
 
+/**
+ * Guardar el tweet en el archivo
+ * Authored by: David Quiroga and Alejandro Monroy
+ * @param $usuario: nombre de usuario
+ * @param $tweet: tweet del usuario
+ * @return void
+ */
+function grabarMessage($usuario, $message, $fecha){
+    $file = "Message.txt";
+    $texto = $usuario . ":" . $message . ":" . $fecha . "\n";
+    $fp = fopen($file, "a");
+    fwrite($fp, $texto);
+    fclose($fp);
+}
+
 /**S
  * Leer el tweet del archivo
  * Authored by: David Quiroga and Alejandro Monroy
@@ -84,6 +99,19 @@ function leerTweet(){
     $texto = fread($fp, filesize($file));
     $tweets = explode("\n", $texto);
     return $tweets;
+}
+
+/**S
+ * Leer el tweet del archivo
+ * Authored by: David Quiroga and Alejandro Monroy
+ * @return array con los tweets
+ */
+function leerMessage(){
+    $file = "message.txt";
+    $fp = fopen($file, "r");
+    $texto = fread($fp, filesize($file));
+    $messages = explode("\n", $texto);
+    return $messages;
 }
 
 /**
