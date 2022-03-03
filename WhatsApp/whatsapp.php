@@ -13,35 +13,40 @@
 
 <body>
 
-    <form method="post">
-        <input type="submit" name="alejandro" class="button" value="Alejandro" />
-        <?php
-        require_once 'tools.php';
-        session_start();
+    <?php
+    require_once 'tools.php';
+    session_start();
 
-        $alejo = $_POST['alejandro'] ?? '';        
-        $message = $_POST['message'] ?? 'Vacio';
+    $fecha = date('Y-m-d');
+    ?>
+
+    <form method="post">
+        <input type="submit" name="alejandro" id="alejandro" class="button" value="Alejandro">
+        <?php
+
+        $alejo = $_POST['alejandro'] ?? '';
 
         if (isset($_POST['alejandro'])) {
             echo "<h1>Alejandro</h1>";
             echo "<form method='post'>";
-            echo "<textarea name='message' id='message' placeholder='Mensaje'></textarea>";
+            echo "<input type='text' name='message' id='message' placeholder='Mensaje'>";
             echo "<input type='submit' name='send' id='send' value='Enviar' />";
             echo "</form>";
+        }
+        ?>
 
-            $fecha = date('Y-m-d');
+        <?php
 
-            // if (isset($_POST['message']) && !empty($_POST['message'])) {
+        if (isset($_POST['send']) && isset($_POST['message'])) {
+
+            $message = $_POST['message'] ?? 'Vacio';
             $msg = alejandro($message, $fecha);
             echo "<p>Mensaje: " . $msg . "</p>";
-            // }else{
-            //     echo "<p>No hay mensaje</p>";
-            // }
         }
         ?>
 
 
-        <input type="submit" name="geronimo" class="button" value="Geronimo" />
+        <!-- <input type="submit" name="geronimo" class="button" value="Geronimo" /> -->
     </form>
 
     <?php

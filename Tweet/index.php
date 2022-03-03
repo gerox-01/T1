@@ -20,27 +20,41 @@
 
     //Iniciar sesión
     $tweet = leerTweet();
-    // var_dump($tweet);
-    //array(1) { [0]=> string(24) "usuario:tweet:fechatweet" }
 
-    echo "<div class='i-tweet' id='style-5'>";
-    echo "<div class='force-overflow'>";
-    foreach ($tweet as $t) {
-        $tweetS = explode(":", $t);
-        if (isset($tweetS) && count($tweetS) > 2) {
-            echo "<div class='i-card'>";
-            echo "<div class='i-card-header'>";
-            echo "<h2>" . $tweetS[0] . "</h2>";
-            echo "<p>" . $tweetS[2] . "</p>";
+
+    if ($tweet == 'Hola') {
+        echo "<div class='i-tweet' id='style-5' >";
+        echo "<div class='force-overflow'>";
+        echo "<h1>No hay Tweets</h1>";
+        echo "</div>";
+        echo "</div>";
+    } else {
+        if (count($tweet) > 0) {
+            echo "<div class='i-tweet' id='style-5'>";
+            echo "<div class='force-overflow'>";
+            foreach ($tweet as $t) {
+                $tweetS = explode(":", $t);
+                if (isset($tweetS) && count($tweetS) > 2) {
+                    echo "<div class='i-card'>";
+                    echo "<div class='i-card-header'>";
+                    echo "<h2>" . $tweetS[0] . "</h2>";
+                    echo "<p>" . $tweetS[2] . "</p>";
+                    echo "</div>";
+                    echo "<div class='i-card-body'>";
+                    echo "<p>" . $tweetS[1] . "</p>";
+                    echo "</div>";
+                    echo "</div>";
+                }
+            }
             echo "</div>";
-            echo "<div class='i-card-body'>";
-            echo "<p>" . $tweetS[1] . "</p>";
+            echo "</div>";
+        } else {
+            echo "<div class='i-tweet' id='style-5'>";
+            echo "<div class='force-overflow'>";
             echo "</div>";
             echo "</div>";
         }
     }
-    echo "</div>";
-    echo "</div>";
     ?>
     </div>
     </div>

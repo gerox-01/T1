@@ -59,11 +59,11 @@
     <form method="post" class="form-register" id="style-5">
         <div>
             <label for="name">Name:</label>
-            <input class="r-options" type="text" name="name" id="name" required="required" pattern="^[a-zA-Z0-9]">
+            <input class="r-options" type="text" name="name" id="name" required="required">
         </div>
         <div>
             <label for="lastname">Lastname:</label>
-            <input class="r-options" type="text" name="lastname" id="lastname" required="required" pattern="[a-zA-Z0-9]">
+            <input class="r-options" type="text" name="lastname" id="lastname" required="required" >
         </div>
         <div>
             <label for="fecha">Fecha nacimiento: </label>
@@ -75,7 +75,7 @@
         </div>
         <div>
             <label for="email">Correo:</label>
-            <input class="r-options" type="email" name="email" id="email" required="required" pattern="/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/">
+            <input class="r-options" type="email" name="email" id="email" required="required" >
         </div>
         <div>
             <label for="web">Portal web:</label>

@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="eee.css">
+    <link rel="stylesheet" href="es.css">
 
     <title>WhatsApp</title>
 </head>
@@ -130,7 +130,7 @@
                     </div>
                     <div class="input-msg">
                         <img class="emoji" src="emoji.png" alt="Emoji">
-                        <img class="clip" src="clip.png" alt="clip">
+                        <img style="width: 30px; height: 30px; cursor: pointer; margin-left: 30px;" src="clip.png" alt="clip">
                         <input class="input-type" type="text" placeholder="Escriba un mensaje">
                         <img class="send-input" src="send.png" alt="send">
                     </div>

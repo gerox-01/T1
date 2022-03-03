@@ -272,13 +272,12 @@ img .bg-default{
   height: 30px;
   
   cursor: pointer;
-
   margin-left: 30px;
 }
-
-.clip{
-  width: 30px;
-  height: 30px;
+|
+.clipp{
+  width: 10px;
+  height: 10px;
   
   cursor: pointer;
 

@@ -38,7 +38,7 @@ function alejandro($message, $fecha){
     $usuario = 'Alejandro';
     $file = "alejo.txt";
     $texto = $usuario . ":" . $message . ":" . $fecha . "\n";
-    $fp = fopen($file, "w");
+    $fp = fopen($file, "a");
     fwrite($fp, $texto);
     fclose($fp);
 }

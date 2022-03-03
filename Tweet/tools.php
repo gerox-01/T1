@@ -3,21 +3,21 @@
 /**
  * Iniciar la sesión
  * Authored by: David Quiroga and Alejandro Monroy
- * */ 
+ * */
 function iniciarSesion()
 {
     session_start();
 }
 
 /** 
-*    Grabar usuario y clave
-*    Authored by: David Quiroga and Alejandro Monroy
-*    @param $usuario: nombre de usuario
-*    @param $clave: clave del usuario
-*/
+ *    Grabar usuario y clave
+ *    Authored by: David Quiroga and Alejandro Monroy
+ *    @param $usuario: nombre de usuario
+ *    @param $clave: clave del usuario
+ */
 function grabarUsuario($usuario, $clave)
 {
-    
+
     // a = append = agregar al final
     // w = write = sobreescribir
     // r = read = leer
@@ -30,12 +30,12 @@ function grabarUsuario($usuario, $clave)
 }
 
 /** *
-*   Leer usuario y clave en $_SESSION
-*   Authored by: David Quiroga and Alejandro Monroy
-*   @param $usuario: nombre de usuario
-*   @param $clave: clave del usuario
-*   @return true si el usuario y clave existen en el archivo
-*/
+ *   Leer usuario y clave en $_SESSION
+ *   Authored by: David Quiroga and Alejandro Monroy
+ *   @param $usuario: nombre de usuario
+ *   @param $clave: clave del usuario
+ *   @return true si el usuario y clave existen en el archivo
+ */
 function leerUsuario($usuario, $clave)
 {
     //Archivo
@@ -65,7 +65,8 @@ function leerUsuario($usuario, $clave)
  * @param $tweet: tweet del usuario
  * @return void
  */
-function grabarTweet($usuario, $tweet, $fecha){
+function grabarTweet($usuario, $tweet, $fecha)
+{
     $file = "tweet.txt";
     $texto = $usuario . ":" . $tweet . ":" . $fecha . "\n";
     $fp = fopen($file, "a");
@@ -78,12 +79,20 @@ function grabarTweet($usuario, $tweet, $fecha){
  * Authored by: David Quiroga and Alejandro Monroy
  * @return array con los tweets
  */
-function leerTweet(){
+function leerTweet()
+{
     $file = "tweet.txt";
     $fp = fopen($file, "r");
-    $texto = fread($fp, filesize($file));
-    $tweets = explode("\n", $texto);
-    return $tweets;
+    $fs = filesize($file);
+
+    if($fs > 0){
+        $texto = fread($fp, filesize($file));
+        $tweets = explode("\n", $texto);
+        fclose($fp);
+        return $tweets;
+    }else{
+        return 'Hola';
+    }
 }
 
 
@@ -94,7 +103,8 @@ function leerTweet(){
  * @param $clavenueva: clave del usuario
  * @return true si el usuario y clave existen en el archivo 
  */
-function restorepassword($usuario, $claveactual, $clavenueva){
+function restorepassword($usuario, $claveactual, $clavenueva, $confirmpassword)
+{
     $file = "usuario.txt";
     $fp = fopen($file, "r");
     $texto = fread($fp, filesize($file));
@@ -102,14 +112,19 @@ function restorepassword($usuario, $claveactual, $clavenueva){
     foreach ($usuarios as $u) {
         $usuS = explode(":", $u);
         if ($usuS[0] == $usuario && $usuS[1] == $claveactual) {
-            $usuS[1] = str_replace($usuario, $claveactual, $clavenueva);
-            $texto2 = $usuS[0] . ":" . $usuS[1];
-            $textot = str_replace($u, $texto2, $texto);
-            $fp = fopen($file, "w");
-            fwrite($fp, $textot);
-            fclose($fp);
+            if ($confirmpassword == $clavenueva) {
+                $usuS[1] = str_replace($usuario, $claveactual, $clavenueva);
+                $texto2 = $usuS[0] . ":" . $usuS[1];
+                $textot = str_replace($u, $texto2, $texto);
+                $fp = fopen($file, "w");
+                fwrite($fp, $textot);
+                fclose($fp);
 
-            return True;
+                return True;
+
+            }else{
+                return False;
+            }
         }
     }
 
@@ -118,10 +133,10 @@ function restorepassword($usuario, $claveactual, $clavenueva){
 
 
 /** 
-*  Cerrar sesión usuarios
-*  Authored by: David Quiroga and Alejandro Monroy
-*  @return void
-**/
+ *  Cerrar sesión usuarios
+ *  Authored by: David Quiroga and Alejandro Monroy
+ *  @return void
+ **/
 function cerrarSesion()
 {
     session_destroy();

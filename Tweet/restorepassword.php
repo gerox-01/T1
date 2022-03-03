@@ -18,6 +18,7 @@
     password_hash('password', PASSWORD_DEFAULT);
     password_verify('password', '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm');
 
+    
 
     ?>
 
@@ -30,7 +31,7 @@
             </div>
             <div>
                 <label for="password">Contraseña nueva: </label>
-                <input type="password" name="passwordn" id="passwordn"  placeholder="Contraseña nueva">
+                <input type="password" name="passwordn" id="passwordn" placeholder="Contraseña nueva">
             </div>
             <div>
                 <label for="confirmpassword">Confirmar contraseña: </label>
@@ -42,23 +43,23 @@
     </form>
 
     <?php
-    require_once ('././tools.php');
+    require_once('tools.php');
     session_start();
 
-    
+    $_SESSION['username'] =  $_SESSION['username'];
     $password = $_POST['password'] ?? '';
     $passwordn = $_POST['passwordn'] ?? '';
-    $confirmpassword = '';
+    $confirmpassword = $_POST['confirmpassword'] ?? '';
 
     if (isset($_POST['passwordn']) == isset($_POST['confirmpassword'])) {
-        $msg = restorepassword($_SESSION['username'], $password, $passwordn) ? header('Location: index.php') : "Contraseña no cambiada";
+            $msg = restorepassword($_SESSION['username'], $password, $passwordn, $confirmpassword) ? "Contraseña cambiada exitosamente" : "Contraseña no cambiada";
 
-        echo "<div class='alert'>";
-        echo "<p>$msg</p>";
-        echo "</div>";
+            echo "<div class='alert'>";
+            echo "<p>$msg</p>";
+            echo "</div>";
     }else{
         echo "<div class='alert'>";
-        echo "<p>Las contraseñas no coinciden</p>";
+        echo "<p>No coinciden!</p>";
         echo "</div>";
     }
     ?>
