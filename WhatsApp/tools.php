@@ -21,7 +21,7 @@ function leerMessage(){
  * @return void
  */
 function grabarMessage($usuario, $message, $fecha){
-    $file = "Message.txt";
+    $file = "message.txt";
     $texto = $usuario . ":" . $message . ":" . $fecha . "\n";
     $fp = fopen($file, "a");
     fwrite($fp, $texto);
