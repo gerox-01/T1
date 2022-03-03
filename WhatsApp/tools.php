@@ -29,4 +29,18 @@ function grabarMessage($usuario, $message, $fecha){
 }
 
 
+/**
+ * Mensajes de Alejandro
+ * Authored by: David Quiroga and Alejandro Monroy
+ * @return void
+ */
+function alejandro($message, $fecha){
+    $usuario = 'Alejandro';
+    $file = "alejo.txt";
+    $texto = $usuario . ":" . $message . ":" . $fecha . "\n";
+    $fp = fopen($file, "w");
+    fwrite($fp, $texto);
+    fclose($fp);
+}
+
 ?>

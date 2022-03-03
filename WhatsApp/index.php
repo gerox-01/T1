@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="estilos.css">
+    <link rel="stylesheet" href="eee.css">
 
     <title>WhatsApp</title>
 </head>
@@ -52,7 +52,7 @@
                                 </div>
                                 <div class="contact-info">
                                     <div class="contact-name">
-                                        <h3 style="font-size: 1.5rem; padding-left: 30px">Universidad de Cundinamarca</h3>
+                                        <h3 style="font-size: 1rem; padding-left: 20px">Universidad de Cundinamarca</h3>
                                     </div>
                                 </div>
                             </div>
@@ -62,7 +62,7 @@
                                 </div>
                                 <div class="contact-info">
                                     <div class="contact-name">
-                                        <h3 style="font-size: 1.5rem; padding-left: 30px">Gabriel Rojas</h3>
+                                        <h3 style="font-size: 1rem; padding-left: 20px">Gabriel Rojas</h3>
                                     </div>
                                 </div>
                             </div>
@@ -72,7 +72,7 @@
                                 </div>
                                 <div class="contact-info">
                                     <div class="contact-name">
-                                        <h3 style="font-size: 1.5rem; padding-left: 30px">Estudiantes</h3>
+                                        <h3 style="font-size: 1rem; padding-left: 20px">Estudiantes</h3>
                                     </div>
                                 </div>
                             </div>

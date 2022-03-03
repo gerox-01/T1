@@ -12,89 +12,78 @@
 </head>
 
 <body>
-    <div class="bg-verde">
-        <div class="container">
-        </div>
-    </div>
-   
+
     <form method="post">
-        <div id='bodybox'>
-            <div id='chatborder'>
-                <input type="text" name="message" id="chatbox" required="required" value="<?php if (isset($message) && $message == '') {
-                 echo $message;
-                 } ?>" placeholder="¡Hola! Escribe aquí" onfocus="placeHolder()">
-            </div>
-            <br>
-            <div>
-                <input type="submit" value="message">
-            </div>
+        <input type="submit" name="alejandro" class="button" value="Alejandro" />
+        <?php
+        require_once 'tools.php';
+        session_start();
+
+        $alejo = $_POST['alejandro'] ?? '';        
+        $message = $_POST['message'] ?? 'Vacio';
+
+        if (isset($_POST['alejandro'])) {
+            echo "<h1>Alejandro</h1>";
+            echo "<form method='post'>";
+            echo "<textarea name='message' id='message' placeholder='Mensaje'></textarea>";
+            echo "<input type='submit' name='send' id='send' value='Enviar' />";
+            echo "</form>";
+
+            $fecha = date('Y-m-d');
+
+            // if (isset($_POST['message']) && !empty($_POST['message'])) {
+            $msg = alejandro($message, $fecha);
+            echo "<p>Mensaje: " . $msg . "</p>";
+            // }else{
+            //     echo "<p>No hay mensaje</p>";
+            // }
+        }
+        ?>
+
+
+        <input type="submit" name="geronimo" class="button" value="Geronimo" />
     </form>
-    <div><br></div>
-    <form method="post">
-        <input type="submit" name="alejandro"
-                class="button" value="Alejandro" />
-          
-        <input type="submit" name="geronimo"
-                class="button" value="Geronimo" />
-    </form>
+
     <?php
-     if(isset($_POST['alejandro'])) {
-        alejandro();
-    }
-    else   if(isset($_POST['geronimo'])) {
-        geronimo();
-    }
-    function alejandro() {
-        // echo "This is Alejandro that is selected";
-    }
-    function geronimo() {
+
+
+    function geronimo()
+    {
         // echo "This is Geronimo that is selected";
     }
-?>
-   
-    <?php
-        require_once 'tools.php';  
-        session_start();
-        $success = '';
-        $message = $_POST['message'] ?? '';
-        $contact = $_POST['contact'] ?? '';
-        $DateAndTime = date('m-d-Y');
-
-        if (isset($_POST['message'])) {
-            $msg = grabarMessage($contact, $message, $DateAndTime);
-            echo "$msg";
-        }
-
-        if ($message != '') {
-            $success = 'success';
-        } else {
-            // Upon Failure.
-            echo '<p class="error">Fill in all fields.</p>';
-            // Set $success variable to an empty string.
-            $success = '';
-        }
-
-    echo "<div class='i-message' id='style-5'>";
-    echo "<div class='force-overflow'>";
-    $message = leerMessage();
-    foreach ($message as $t) {
-        $messageS = explode(":", $t);
-        if (isset($messageS) && count($messageS) > 2) {
-            echo "<div class='i-card'>";
-            echo "<div class='i-card-header'>";
-            echo "<h2>" . $messageS[0] . "</h2>";
-            echo "<p>" . $messageS[2] . "</p>";
-            echo "</div>";
-            echo "<div class='i-card-body'>";
-            echo "<p>" . $messageS[1] . "</p>";
-            echo "</div>";
-            echo "</div>";
-        }
-    }
-    echo "</div>";
-    echo "</div>";
     ?>
-    
+
+    <?php
+    // if ($message != '') {
+    //     $success = 'success';
+    // } else {
+    //     // Upon Failure.
+    //     echo '<p class="error">Fill in all fields.</p>';
+    //     // Set $success variable to an empty string.
+    //     $success = '';
+    // }
+
+    // echo "<div class='i-message' id='style-5'>";
+    // echo "<div class='force-overflow'>";
+    // $message = leerMessage();
+    // foreach ($message as $t) {
+    //     $messageS = explode(":", $t);
+    //     if (isset($messageS) && count($messageS) > 2) {
+    //         echo "<div class='i-card'>";
+    //         echo "<div class='i-card-header'>";
+    //         echo "<h2>" . $messageS[0] . "</h2>";
+    //         echo "<p>" . $messageS[2] . "</p>";
+    //         echo "</div>";
+    //         echo "<div class='i-card-body'>";
+    //         echo "<p>" . $messageS[1] . "</p>";
+    //         echo "</div>";
+    //         echo "</div>";
+    //     }
+    // }
+    // echo "</div>";
+    // echo "</div>";
+    ?>
+
 
 </body>
 
