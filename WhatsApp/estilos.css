@@ -1,0 +1,315 @@
+body {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+  "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  margin: 0;
+  background-color: #E2E1DE;
+  overflow: hidden;
+}
+
+.bg-wpp{
+  background-color: #E2E1DE;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.bg-verde{
+  position: fixed;
+  margin: 0 !important;
+  background-color: #00A884;
+  width: 100vw;
+  height: 15vh;
+
+  z-index: 1;
+}
+
+.container{
+  width: 70vw;
+  height: 90vh;
+  margin-top: 5vh;
+
+  z-index: 100;
+  background-color: #F8F8F8;
+
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+}
+
+.topbar{
+  background-color: #F0F2F5;
+  height: 9vh;
+
+  display: flex;
+  align-items: center;
+}
+
+.section-profile{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  width: 25vw;
+  height: 8.8vh;
+
+  border: 1px solid #E2E1DE;
+  border-radius:5px;
+}
+
+.foto-perfil{
+  width: 50px;
+  height: 50px;
+  margin: 10px;
+}
+
+.section-icons{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 25vw;
+
+  margin: 10px;
+}
+.status{
+  width: 40px;
+  height: 40px;
+
+  padding-left: 15rem;
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.newchat{
+  width: 45px;
+  height: 45px;
+
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.menu{
+  width: 45px;
+  height: 45px;
+
+  padding-right: 4rem;
+
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.search{
+  
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  width: 25vw;
+  height: 6vh;
+
+  border: 1px solid #E2E1DE;
+}
+
+.section-search{
+  margin: 30px;
+}
+
+.search-bar{
+  width: 23vw;
+  height: 4vh;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  background-color: #F0F2F5;
+  
+  border: 1px solid #E2E1DE;
+  border-radius: 5px;
+
+  padding: 2px;
+}
+
+.icon-search{
+  width: 40px;
+  height: 40px;
+
+  margin-left: 10px;
+
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+input{
+  width: 20vw;
+  height: 2vh;
+  padding: 10px;
+
+  border: none;
+  background-color: #F0F2F5;
+  font-size: 1.5em;
+
+  opacity: 0.5;
+}
+
+.contacts{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 25vw;
+  height: 75vh;
+
+  border: 1px solid #E2E1DE;
+  border-radius: 5px;
+}
+
+.section-contacts{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.contact{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 25vw;
+  height: 10vh;
+
+  cursor: pointer;
+
+  border: 1px solid #E2E1DE;
+}
+
+.contact:hover{
+  background-color: #F5F6F6;
+}
+
+.photo-contact{
+  width: 55px;
+  height: 55px;
+  margin: 10px;
+
+  padding-left: 30px;
+}
+
+.contact-name p{
+  margin: 0;
+  padding: 0;
+
+  font-weight: 400;
+  font-size: 2rem;
+}
+
+.content{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+
+  border: 1px solid #E2E1DE;
+  border-radius: 5px;
+}
+
+.photo-chat{
+  width: 35px;
+  height: 35px;
+  margin: 10px;
+}
+
+.photo-message{
+  width: 35px;
+  height: 35px;
+  margin: 10px;
+}
+
+.chats{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: 44.5vw;
+  height: 80vh;
+
+  border: 1px solid #E2E1DE;
+  border-radius: 5px;
+
+  background-image: url(bg.jpg);
+  background-color: #F5F2EC; 
+  opacity: 0.5;
+}
+
+img .bg-default{
+  width: 61.7rem;
+  
+}
+
+.content-msg{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: flex-end;
+  width: auto;
+  height: auto;
+
+  border: 1px solid #F5F2EC;
+  border-radius: 5px;
+
+  background-color: #D9FDD3;
+  
+  font-size: 1.5rem;
+  padding: 5px;
+  margin-top: 10px;
+}
+
+
+.input-msg{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  width: 44.5vw;
+  height: 9vh;
+
+  border: none;
+  background-color: #F0F2F5;
+  font-size: 1.5em;
+}
+
+.emoji{
+  width: 40px;
+  height: 40px;
+  
+  cursor: pointer;
+
+  margin-left: 30px;
+}
+
+.clip{
+  width: 40px;
+  height: 40px;
+  
+  cursor: pointer;
+
+  margin-left: 30px;
+}
+
+.input-type{
+  width: 30vw;
+  height: 4vh;
+  background-color: #FFFF;
+  margin-left: 50px;
+
+  border: 1px solid #E2E1DE;
+  border-radius: 5px;
+}
+
+.send-input{
+  width: 40px;
+  height: 40px;
+
+  cursor: pointer;
+
+  margin-left: 60px;
+  /* color: #00a884 !important; */
+}
