@@ -6,12 +6,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="es.css">
+    <link rel="stylesheet" href="estilos.css">
 
     <title>WhatsApp</title>
 </head>
 
 <body>
+
+    <?php
+    require_once 'tools.php';
+    session_start();
+
+    $fecha = date('Y-m-d');
+    ?>
 
     <div class="bg-verde"></div>
 
@@ -50,9 +57,67 @@
                                 <div class="contact-photo">
                                     <img class="photo-contact" src="profile.png" alt="Contact Photo">
                                 </div>
+                                <p>Alejandro Monroy</p>
                                 <div class="contact-info">
                                     <div class="contact-name">
-                                        <h3 style="font-size: 1rem; padding-left: 20px">Universidad de Cundinamarca</h3>
+                                        <form method="post">
+                                            <input type="submit" style="font-size: 1rem; padding-left: 20px; border: none; background-color: #F5F6F6 !important; cursor: pointer; font-weight:700;" name="alejandro" id="alejandro" class="button" value="Click 📩">
+                                            <?php
+
+                                            $alejo = $_POST['alejandro'] ?? '';
+
+                                            if (isset($_POST['alejandro'])) {
+                                                echo "<form method='post'>";
+                                            ?>
+                                                <div class="chats-chat">
+                                                    <div class="content-msg">
+                                                        <?php
+                                                        echo "<div class='i-message' id='style-5'>";
+                                                        echo "<div class='force-overflow'>";
+                                                        $message = leerMessage();
+                                                        foreach ($message as $t) {
+                                                            $messageS = explode(":", $t);
+                                                            if (isset($messageS) && count($messageS) > 2) {
+                                                                echo "<div class='i-card'>";
+                                                                echo "<div style='margin-right: 0.5rem;' class='i-card-header'>";
+                                                                echo "<p style='font-size: 1rem !important;'>" . $messageS[1] . "</p>";
+                                                                echo "</div>";
+                                                                echo "<div style='font-size: 10px !important;' class='i-card-body'>";
+                                                                echo "<p>" . $messageS[2] . "</p>";
+                                                                echo "✅✅";
+                                                                echo "</div>";
+                                                                echo "</div>";
+                                                            }
+                                                        }
+                                                        echo "</div>";
+                                                        echo "</div>";
+                                                        ?>
+                                                    </div>
+                                                    <div class="input-msg">
+                                                        <img class="emoji" src="emoji.png" alt="Emoji">
+                                                        <img style="width: 30px; height: 30px; cursor: pointer; margin-left: 30px;" src="clip.png" alt="clip">
+                                                        <input type='text' class="input-type" name='message' id='message' placeholder="Escriba un mensaje">
+                                                        <!-- <img class="send-input" src="send.png" type='submit' name='send' id='send' alt="send"> -->
+                                                        <input type='submit' style="border: none; cursor: pointer;" name='send' id='send' value='Enviar' />
+                                                    </div>
+                                                </div>
+                                            <?php
+                                                echo "</form>";
+                                            } 
+                                            ?>
+
+                                            <?php
+
+                                            if (isset($_POST['send']) && isset($_POST['message']) && !empty($_POST['message'])) {
+
+                                                $message = $_POST['message'] ?? 'Vacio';
+                                                $msg = alejandro($message, $fecha);
+                                                // echo "<p>Mensaje: " . $msg . "</p>";
+                                            } else {
+                                                echo "";
+                                            }
+                                            ?>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -80,50 +145,7 @@
                     </div>
                 </div>
 
-                <div class="chats">
-                    <!-- <div class="chat">
-                        <div class="section-chat">
-                            <div class="chat-header">
-                                <div class="chat-header-info">
-                                    <div class="chat-header-photo">
-                                        <img class="photo-chat" src="profile.png" alt="Chat Photo">
-                                    </div>
-                                    <div class="chat-header-name">
-                                        <p>Universidad de Cundinamarca</p>
-                                    </div>
-                                </div>
-                                <div class="chat-header-icons">
-                                    <img class="icon-chat" src="icon-chat.png" alt="Icon Chat">
-                                    <img class="icon-video" src="icon-video.png" alt="Icon Video">
-                                    <img class="icon-audio" src="icon-audio.png" alt="Icon Audio">
-                                    <img class="icon-file" src="icon-file.png" alt="Icon File">
-                                </div>
-                            </div>
-                            <div class="chat-body">
-                                <div class="chat-message">
-                                    <div class="chat-message-photo">
-                                        <img class="photo-message" src="profile.png" alt="Message Photo">
-                                    </div>
-                                    <div class="chat-message-text">
-                                        <p>Hola, como estas?</p>
-                                    </div>
-                                </div>
-                                <div class="chat-message">
-                                    <div class="chat-message-photo">
-                                        <img class="photo-message" src="profile.png" alt="Message Photo">
-                                    </div>
-                                    <div class="chat-message-text">
-                                        <p>Bien, gracias</p>
-                                    </div>
-                                </div>
-                                <div class="chat-message">
-                                    <div class="chat-message-photo">
-                                        <img class="photo-message" src="profile.png" alt="Message Photo">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
+                <!-- <div class="chats">
                     <div class="content-msg">
                         <p>Aquí van los mensajes</p>
                         <p>✅✅</p>
@@ -134,7 +156,7 @@
                         <input class="input-type" type="text" placeholder="Escriba un mensaje">
                         <img class="send-input" src="send.png" alt="send">
                     </div>
-                </div>
+                </div> -->
 
             </div>
 

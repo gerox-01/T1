@@ -6,7 +6,7 @@
  * @return array con los mensajes
  */
 function leerMessage(){
-    $file = "message.txt";
+    $file = "alejo.txt";
     $fp = fopen($file, "r");
     $texto = fread($fp, filesize($file));
     $messages = explode("\n", $texto);
