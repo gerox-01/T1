@@ -25,6 +25,9 @@
                 <a href="tweet.php">🐦Tweet</a>
             </div>
             <div>
+                <a href="../WhatsApp/index.php">📞WhatsApp</a>
+            </div>
+            <div>
                 <a href="./restorepassword.php">🖊 Cambiar contraseña</a>
             </div>
         </div>
