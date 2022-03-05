@@ -60,12 +60,12 @@
         <div>
             <label for="name">Name:</label>
             <input class="r-options" type="text" name="name" id="name" required="required"
-            pattern="^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$">
+            pattern="^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$"title="Escriba los nombres sin tildes">
         </div>
         <div>
             <label for="lastname">Lastname:</label>
             <input class="r-options" type="text" name="lastname" id="lastname" required="required" 
-            pattern="^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$">
+            pattern="^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$"title="Escriba apellidos sin tildes" >
         </div>
         <div>
             <label for="fecha">Fecha nacimiento: </label>
