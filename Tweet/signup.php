@@ -20,14 +20,77 @@
 
     <?php
     $name = '';
+    $nameErr ='';
     $lastname = '';
+    $lastnameErr = '';
     $tipodoc = '';
+    $tipodocErr ='';
     $num = '';
     $email = '';
+    $emailErr ='';
+    $web ='';
+    $webErr ='';
     $username = '';
+    $usernameErr ='';
     $password = '';
+    $passwordErr= '';
     $confirmpassword = '';
+    $confirmpasswordErr = '';
     $fechanacimiento;
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if (empty($_POST["name"])) {
+            $nameErr = "Name is required";
+         }else {
+            $name = test_input($_POST["name"]);
+         }
+         if (empty($_POST["lastname"])) {
+            $lastnameErr = "lastname is required";
+         }else {
+            $lastname = test_input($_POST["lastname"]);
+         }
+        if (empty($_POST["email"])) {
+            $emailErr = "Email is required";
+        }else {
+            $email = test_input($_POST["email"]);
+            
+            // check if e-mail address is well-formed
+            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $emailErr = "Invalid email format"; 
+            }
+        }
+        if (empty($_POST["web"])) {
+            $webErr = "web is required";
+         }else {
+            $web = test_input($_POST["web"]);
+         }
+        if (empty($_POST["tipodoc"])) {
+            $tipodocErr = "You must select 1 or more";
+        }else {
+            $tipodoc = $_POST["tipodoc"];	
+        }
+        if (empty($_POST["username"])) {
+            $usernameErr = "username is required";
+         }else {
+            $username = test_input($_POST["username"]);
+         }
+         if (empty($_POST["password"])) {
+            $passwordErr = "password is required";
+         }else {
+            $password = test_input($_POST["password"]);
+         }
+         if (empty($_POST["confirmpassword"])) {
+            $confirmpasswordErr = "confirmpassword is required";
+         }else {
+            $confirmpassword = test_input($_POST["confirmpassword"]);
+         }
+    }
+    function test_input($data) {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
+     }
 
     if (isset($_POST['name']) && isset($_POST['lastname']) && isset($_POST['tipodoc']) && isset($_POST['num'])) {
         $name = $_POST['name'];
@@ -40,7 +103,6 @@
             $username = $_POST['username'];
             $password = $_POST['password'];
             $confirmpassword = $_POST['confirmpassword'];
-
             if (empty($password) && empty($confirmpassword)) {
                 $display = '<p>Las contraseñas no pueden estar vacías.</p>';
             } else {
@@ -53,19 +115,24 @@
         } else {
             $display = '<p>No se han completado todos los campos</p>';
         }
+        
     }
+
+
+    
     ?>
+    
 
     <form method="post" class="form-register" id="style-5">
         <div>
             <label for="name">Name:</label>
             <input class="r-options" type="text" name="name" id="name" required="required"
-            pattern="^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$"title="Escriba los nombres sin tildes">
+            pattern="([A-Za-z0-9\. -]+)"title="Escriba el nombre">
         </div>
         <div>
             <label for="lastname">Lastname:</label>
             <input class="r-options" type="text" name="lastname" id="lastname" required="required" 
-            pattern="^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$"title="Escriba apellidos sin tildes" >
+            pattern="([A-Za-z0-9\. -]+)"title="Escriba apellidos" >
         </div>
         <div>
             <label for="fecha">Fecha nacimiento: </label>
@@ -78,12 +145,13 @@
         <div>
             <label for="email">Correo:</label>
             <input class="r-options" type="email" name="email" id="email" required="required" 
-            pattern = "^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$">
+            pattern = "^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"title="Escriba correo correctamente">
         </div>
         <div>
             <label for="web">Portal web:</label>
             <input class="r-options" type="url" name="web" id="web" required="required" 
-            pattern="[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)">
+            pattern="[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)"
+            title="Escriba url correctamente">
         </div>
         <div>
             <label for="tipodoc">Tipo de documento:</label>
@@ -97,17 +165,19 @@
         <div>
             <label for="username">Username:</label>
             <input class="r-options" type="text" name="username" id="username" required="required"
-            pattern="^[a-z0-9_-]{3,16}$">
+            pattern="^[a-z0-9_-]{3,16}$"title="Escriba usuario sin espacios y tildes, mas de 3 y menos de 13  caracteres">>
         </div>
         <div>
             <label for="password">Password:</label>
             <input class="r-options" type="password" name="password" id="password" required="required"
-            pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$">
+            pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$"
+            title="más de 8 caracteres, 1 minuscula, mayuscula, número y caracter especial">
         </div>
         <div>
             <label for="confirmpassword">Confirm Password:</label>
             <input class="r-options" type="password" name="confirmpassword" id="confirmpassword" required="required"
-            pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$" >
+            pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$"
+            title="más de 8 caracteres, 1 minuscula, mayuscula, número y caracter especial" >
 
         </div>
         <input type="submit" name="btnRegistrar" value="Register" class='button-r'>
@@ -115,7 +185,7 @@
 
     <?php
     require_once "tools.php";
-    session_start();
+     session_start();
     if (isset($_POST['name'])) {
         $_SESSION['username'] =  $_POST['username'];
         $_SESSION['password'] =  $_POST['password'];
