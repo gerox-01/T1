@@ -59,11 +59,13 @@
     <form method="post" class="form-register" id="style-5">
         <div>
             <label for="name">Name:</label>
-            <input class="r-options" type="text" name="name" id="name" required="required">
+            <input class="r-options" type="text" name="name" id="name" required="required"
+            pattern="^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$">
         </div>
         <div>
             <label for="lastname">Lastname:</label>
-            <input class="r-options" type="text" name="lastname" id="lastname" required="required" >
+            <input class="r-options" type="text" name="lastname" id="lastname" required="required" 
+            pattern="^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$">
         </div>
         <div>
             <label for="fecha">Fecha nacimiento: </label>
@@ -75,11 +77,13 @@
         </div>
         <div>
             <label for="email">Correo:</label>
-            <input class="r-options" type="email" name="email" id="email" required="required" >
+            <input class="r-options" type="email" name="email" id="email" required="required" 
+            pattern = "^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$">
         </div>
         <div>
             <label for="web">Portal web:</label>
-            <input class="r-options" type="url" name="web" id="web" required="required">
+            <input class="r-options" type="url" name="web" id="web" required="required" 
+            pattern="[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)">
         </div>
         <div>
             <label for="tipodoc">Tipo de documento:</label>
@@ -92,15 +96,19 @@
         </div>
         <div>
             <label for="username">Username:</label>
-            <input class="r-options" type="text" name="username" id="username" required="required">
+            <input class="r-options" type="text" name="username" id="username" required="required"
+            pattern="^[a-z0-9_-]{3,16}$">
         </div>
         <div>
             <label for="password">Password:</label>
-            <input class="r-options" type="password" name="password" id="password" required="required">
+            <input class="r-options" type="password" name="password" id="password" required="required"
+            pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$">
         </div>
         <div>
             <label for="confirmpassword">Confirm Password:</label>
-            <input class="r-options" type="password" name="confirmpassword" id="confirmpassword" required="required">
+            <input class="r-options" type="password" name="confirmpassword" id="confirmpassword" required="required"
+            pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$" >
+
         </div>
         <input type="submit" name="btnRegistrar" value="Register" class='button-r'>
     </form>
