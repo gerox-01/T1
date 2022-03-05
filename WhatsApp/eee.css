@@ -5,6 +5,16 @@ body {
   background-color: #E2E1DE;
   overflow: hidden;
 }
+/* 
+form{
+  margin: 0 auto;
+  width: 500px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  border-radius: 3px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+} */
 
 .bg-wpp{
   background-color: #E2E1DE;
@@ -305,6 +315,33 @@ img .bg-default{
   display: flex;
   margin-left: 200px;
   margin-top: 372px;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: 44.5vw;
+  height: 80vh;
+  background-image: url(bg.jpg);
+  background-color: #F5F2EC;
+  /* z-index: 2; */
+}
+
+.chats-chatd{
+  display: flex;
+  margin-left: 200px;
+  margin-top: 226px;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: 44.5vw;
+  height: 80vh;
+  background-image: url(bg.jpg);
+  background-color: #F5F2EC;
+}
+
+.chats-chate{
+  display: flex;
+  margin-left: 190px;
+  margin-top: 94px;
   flex-direction: column;
   align-items: flex-end;
   justify-content: space-between;

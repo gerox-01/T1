@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="estilos.css">
+    <link rel="stylesheet" href="eee.css">
 
     <title>WhatsApp</title>
 </head>
@@ -74,7 +74,7 @@
                                                         <?php
                                                         echo "<div class='i-message' id='style-5'>";
                                                         echo "<div class='force-overflow'>";
-                                                        $message = leerMessage();
+                                                        $message = leerMessageAlejo();
                                                         foreach ($message as $t) {
                                                             $messageS = explode(":", $t);
                                                             if (isset($messageS) && count($messageS) > 2) {
@@ -103,7 +103,7 @@
                                                 </div>
                                             <?php
                                                 echo "</form>";
-                                            } 
+                                            }
                                             ?>
 
                                             <?php
@@ -111,7 +111,7 @@
                                             if (isset($_POST['send']) && isset($_POST['message']) && !empty($_POST['message'])) {
 
                                                 $message = $_POST['message'] ?? 'Vacio';
-                                                $msg = alejandro($message, $fecha);
+                                                $msg = grabarAlejandro($message, $fecha);
                                                 // echo "<p>Mensaje: " . $msg . "</p>";
                                             } else {
                                                 echo "";
@@ -125,9 +125,67 @@
                                 <div class="contact-photo">
                                     <img class="photo-contact" src="profile.png" alt="Contact Photo">
                                 </div>
+                                <p>Docente de Linea II</p>
                                 <div class="contact-info">
                                     <div class="contact-name">
-                                        <h3 style="font-size: 1rem; padding-left: 20px">Gabriel Rojas</h3>
+                                        <form method="post">
+                                            <input type="submit" style="font-size: 1rem; padding-left: 20px; border: none; background-color: #F5F6F6 !important; cursor: pointer; font-weight:700;" name="docente" id="docente" class="button" value="Click 📩">
+                                            <?php
+
+                                            $alejo = $_POST['docente'] ?? '';
+
+                                            if (isset($_POST['docente'])) {
+                                                echo "<form method='post'>";
+                                            ?>
+                                                <div class="chats-chatd">
+                                                    <div class="content-msg">
+                                                        <?php
+                                                        echo "<div class='i-message' id='style-5'>";
+                                                        echo "<div class='force-overflow'>";
+                                                        $message = leerMessageDocente();
+                                                        foreach ($message as $t) {
+                                                            $messageS = explode(":", $t);
+                                                            if (isset($messageS) && count($messageS) > 2) {
+                                                                echo "<div class='i-card'>";
+                                                                echo "<div style='margin-right: 0.5rem;' class='i-card-header'>";
+                                                                echo "<p style='font-size: 1rem !important;'>" . $messageS[1] . "</p>";
+                                                                echo "</div>";
+                                                                echo "<div style='font-size: 10px !important;' class='i-card-body'>";
+                                                                echo "<p>" . $messageS[2] . "</p>";
+                                                                echo "✅✅";
+                                                                echo "</div>";
+                                                                echo "</div>";
+                                                            }
+                                                        }
+                                                        echo "</div>";
+                                                        echo "</div>";
+                                                        ?>
+                                                    </div>
+                                                    <div class="input-msg">
+                                                        <img class="emoji" src="emoji.png" alt="Emoji">
+                                                        <img style="width: 30px; height: 30px; cursor: pointer; margin-left: 30px;" src="clip.png" alt="clip">
+                                                        <input type='text' class="input-type" name='message' id='message' placeholder="Escriba un mensaje">
+                                                        <!-- <img class="send-input" src="send.png" type='submit' name='send' id='send' alt="send"> -->
+                                                        <input type='submit' style="border: none; cursor: pointer;" name='send' id='send' value='Enviar' />
+                                                    </div>
+                                                </div>
+                                            <?php
+                                                echo "</form>";
+                                            }
+                                            ?>
+
+                                            <?php
+
+                                            if (isset($_POST['send']) && isset($_POST['message']) && !empty($_POST['message'])) {
+
+                                                $message = $_POST['message'] ?? 'Vacio';
+                                                $msg = grabarDocente($message, $fecha);
+                                                // echo "<p>Mensaje: " . $msg . "</p>";
+                                            } else {
+                                                echo "";
+                                            }
+                                            ?>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -135,9 +193,67 @@
                                 <div class="contact-photo">
                                     <img class="photo-contact" src="profile.png" alt="Contact Photo">
                                 </div>
+                                <p>Estudiante</p>
                                 <div class="contact-info">
                                     <div class="contact-name">
-                                        <h3 style="font-size: 1rem; padding-left: 20px">Estudiantes</h3>
+                                        <form method="post">
+                                            <input type="submit" style="font-size: 1rem; padding-left: 20px; border: none; background-color: #F5F6F6 !important; cursor: pointer; font-weight:700;" name="estudiante" id="estudiante" class="button" value="Click 📩">
+                                            <?php
+
+                                            $alejo = $_POST['estudiante'] ?? '';
+
+                                            if (isset($_POST['estudiante'])) {
+                                                echo "<form method='post'>";
+                                            ?>
+                                                <div class="chats-chate">
+                                                    <div class="content-msg">
+                                                        <?php
+                                                        echo "<div class='i-message' id='style-5'>";
+                                                        echo "<div class='force-overflow'>";
+                                                        $message = leerMessageEstudiante();
+                                                        foreach ($message as $t) {
+                                                            $messageS = explode(":", $t);
+                                                            if (isset($messageS) && count($messageS) > 2) {
+                                                                echo "<div class='i-card'>";
+                                                                echo "<div style='margin-right: 0.5rem;' class='i-card-header'>";
+                                                                echo "<p style='font-size: 1rem !important;'>" . $messageS[1] . "</p>";
+                                                                echo "</div>";
+                                                                echo "<div style='font-size: 10px !important;' class='i-card-body'>";
+                                                                echo "<p>" . $messageS[2] . "</p>";
+                                                                echo "✅✅";
+                                                                echo "</div>";
+                                                                echo "</div>";
+                                                            }
+                                                        }
+                                                        echo "</div>";
+                                                        echo "</div>";
+                                                        ?>
+                                                    </div>
+                                                    <div class="input-msg">
+                                                        <img class="emoji" src="emoji.png" alt="Emoji">
+                                                        <img style="width: 30px; height: 30px; cursor: pointer; margin-left: 30px;" src="clip.png" alt="clip">
+                                                        <input type='text' class="input-type" name='message' id='message' placeholder="Escriba un mensaje">
+                                                        <!-- <img class="send-input" src="send.png" type='submit' name='send' id='send' alt="send"> -->
+                                                        <input type='submit' style="border: none; cursor: pointer;" name='send' id='send' value='Enviar' />
+                                                    </div>
+                                                </div>
+                                            <?php
+                                                echo "</form>";
+                                            }
+                                            ?>
+
+                                            <?php
+
+                                            if (isset($_POST['send']) && isset($_POST['message']) && !empty($_POST['message'])) {
+
+                                                $message = $_POST['message'] ?? 'Vacio';
+                                                $msg = grabarEstudiante($message, $fecha);
+                                                // echo "<p>Mensaje: " . $msg . "</p>";
+                                            } else {
+                                                echo "";
+                                            }
+                                            ?>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
