@@ -165,7 +165,7 @@
         <div>
             <label for="username">Username:</label>
             <input class="r-options" type="text" name="username" id="username" required="required"
-            pattern="^[a-z0-9_-]{3,16}$"title="Escriba usuario sin espacios y tildes, mas de 3 y menos de 13  caracteres">>
+            pattern="^[a-z0-9_-]{3,16}$"title="Escriba usuario sin espacios y tildes, mas de 3 y menos de 13  caracteres">
         </div>
         <div>
             <label for="password">Password:</label>
