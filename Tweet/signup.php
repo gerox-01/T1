@@ -185,7 +185,6 @@
 
     <?php
     require_once "tools.php";
-     session_start();
     if (isset($_POST['name'])) {
         $_SESSION['username'] =  $_POST['username'];
         $_SESSION['password'] =  $_POST['password'];

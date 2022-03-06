@@ -52,7 +52,7 @@
                 <label for="password">Password:</label>
                 <input type="password" name="password" id="password" required="required" placeholder="Digite contraseña"
                 pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$"
-                title="más de 8 caracteres, 1 minuscula, mayuscula, número y caracter especial">>
+                title="más de 8 caracteres, 1 minuscula, mayuscula, número y caracter especial">
             </div>
             <button name="send" value="send">Enviar</button>
         </form>
