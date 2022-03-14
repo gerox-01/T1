@@ -15,7 +15,7 @@ function iniciarSesion()
  *    @param $usuario: nombre de usuario
  *    @param $clave: clave del usuario
  */
-function grabarUsuario($usuario, $clave)
+function grabarUsuario($usuario, $clave, $name, $lastname, $fecha, $color, $email, $web, $tipodoc, $usertype)
 {
 
     // a = append = agregar al final
@@ -23,10 +23,43 @@ function grabarUsuario($usuario, $clave)
     // r = read = leer
 
     $file = "usuario.txt";
-    $texto = $usuario . ":" . $clave . "\n";
+    $texto = $usuario . ":" . $clave . ":" . $name . ":" . $lastname . ":" . $fecha . ":" . $color . ":" . $email . "," . $web . ":" . $tipodoc . ":" . $usertype . "\n";
     $fp = fopen($file, "a");
     fwrite($fp, $texto);
     fclose($fp);
+}
+
+/**
+ * Retornar el tipo de usuario
+ * Authored by: David Quiroga and Alejandro Monroy
+ * @param $usuario: nombre de usuario
+ * @param $clave: clave del usuario
+ * @return $usertype: tipo de usuario
+ */
+function getUserType($usuario, $clave)
+{
+
+    $file = "usuario.txt";
+    $fp = fopen($file, "r");
+    $texto = fread($fp, filesize($file));
+    $usuarios = explode("\n", $texto);
+
+    if ($usuario == "" || $usuario == null && $clave == "" || $clave == null) {
+        return "";
+    } else {
+        foreach ($usuarios as $u) {
+            $user = explode(":", $u);
+            if ($user[0] == $usuario && $user[1] == $clave) {
+                $usertype = $user[9];
+            }
+        }
+    }
+
+    if ($usertype == "" || $usertype == null) {
+        $usertype = "No existe el usuario";
+    }
+
+    return $usertype;
 }
 
 /** *
@@ -85,14 +118,40 @@ function leerTweet()
     $fp = fopen($file, "r");
     $fs = filesize($file);
 
-    if($fs > 0){
+
+    if ($fs > 0) {
         $texto = fread($fp, filesize($file));
         $tweets = explode("\n", $texto);
+
         fclose($fp);
-        return $tweets;
-    }else{
-        return 'Hola';
-    }
+            return $tweets;
+        }else{
+            return 'Hola';
+        }
+
+        // foreach ($tweets as $t) {
+        //     $datos = explode(":", $t);
+            
+        //         if(isset($_SESSION['username'])){
+        //             if($datos[0]==$_SESSION['username']){
+        //                 echo "<a href='delete.php?id=$datos[3]'><button class='btn btn-danger'>Eliminar</button></a>";
+        //             }
+        //         }
+        //     }
+        //     fclose($fp);
+        //     return $datos;
+            
+        // }
+        // return $tweets;
+
+        // if($fs > 0){
+        //     $texto = fread($fp, filesize($file));
+        //     $tweets = explode("\n", $texto);
+        //     fclose($fp);
+        //     return $tweets;
+        // }else{
+        //     return 'Hola';
+        // }
 }
 
 
@@ -121,14 +180,44 @@ function restorepassword($usuario, $claveactual, $clavenueva, $confirmpassword)
                 fclose($fp);
 
                 return True;
-
-            }else{
+            } else {
                 return False;
             }
         }
     }
 
     return False;
+}
+
+
+/**
+ * Eliminar un tweet
+ * Authored by: David Quiroga and Alejandro Monroy
+ * @param $usuario: nombre de usuario
+ * @param $tweet: tweet del usuario
+ * @return void
+ */
+function eliminarTweet($usuario, $tweet)
+{
+    $file = "tweet.txt";
+    $fp = fopen($file, "r");
+    $texto = fread($fp, filesize($file));
+    $tweets = explode("\n", $texto);
+    $textot = "";
+    foreach ($tweets as $t) {
+        $tuit = explode(":", $t);
+        if ($tuit[0] == $usuario && $tuit[1] == $tweet) {
+            $textot = str_replace($t, "", $texto);
+        }
+        // else{
+            $textot .= $t . "\n";
+        // }
+
+    }
+    fclose($fp);
+    $fp = fopen($file, "w");
+    fwrite($fp, $textot);
+    fclose($fp);
 }
 
 

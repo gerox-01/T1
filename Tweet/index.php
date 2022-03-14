@@ -1,3 +1,15 @@
+<?php
+header('Content-Type: text/html; charset=UTF-8');
+require_once('./nav.php');
+if (isset($_SESSION['username'])) {
+    $user = $_SESSION['username'];
+} else {
+    header('Location: login.php');
+    die();
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,12 +26,11 @@
 <body>
 
     <?php
-    //Llamamos al componente nav
-    require_once('./nav.php');
     require_once('./tools.php');
 
     //Iniciar sesión
     $tweet = leerTweet();
+
 
 
     if ($tweet == 'Hola') {
@@ -29,6 +40,7 @@
         echo "</div>";
         echo "</div>";
     } else {
+        $userTweet = $_SESSION['username'];
         if (count($tweet) > 0) {
             echo "<div class='i-tweet' id='style-5'>";
             echo "<div class='force-overflow'>";
@@ -44,7 +56,33 @@
                     echo "<p>" . $tweetS[1] . "</p>";
                     echo "</div>";
                     echo "</div>";
+
+                    if ($tweetS[0] == $userTweet) {
+                        echo '<form method="post">';
+                        echo '    <div>';
+                        echo '        <input type="hidden" name="tweet" value="<?php echo $tweetS[1]; ?>">';
+                        echo '        <input type="submit" value="Eliminar">';
+                        echo '    </div>';
+                        echo '</form>';
+                        if (isset($_POST['tweet'])) {
+                            $tweet = $_POST['tweet'];
+                            eliminarTweet($_SESSION['username'], $tweet);
+                        }
+                    }
                 }
+                // else{
+                //     if (isset($tweetS) && count($tweetS) > 2) {
+                //         echo "<div class='i-card'>";
+                //         echo "<div class='i-card-header'>";
+                //         echo "<h2>" . $tweetS[0] . "</h2>";
+                //         echo "<p>" . $tweetS[2] . "</p>";
+                //         echo "</div>";
+                //         echo "<div class='i-card-body'>";
+                //         echo "<p>" . $tweetS[1] . "</p>";
+                //         echo "</div>";
+                //         echo "</div>";
+                //     }
+                // }
             }
             echo "</div>";
             echo "</div>";

@@ -1,6 +1,2 @@
-muchachita:1234
-amonroy:Amonroy2022*
-amonroy2:Amonroy2022*
-amonroy3:Amonroy2022*
-amonroy:Amonroy2022*
-amonroy5:Amonroy2022*
+pass:Prueba123.:Geronimo Quiroga:word:2001-01-01:#000000:gedaquito@gmail.com:https://api.flutter.dev/index.html:CE:Comprador
+vende:Prueba123.:Vendedor:Uno:2001-01-01:#000000:gedaquito@gmail.com,https://api.flutter.dev/index.html:CC:Vendedor

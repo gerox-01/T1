@@ -44,7 +44,7 @@
 
     <?php
     require_once('tools.php');
-    session_start();
+    // session_start();
 
     $_SESSION['username'] =  $_SESSION['username'];
     $password = $_POST['password'] ?? '';

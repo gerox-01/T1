@@ -180,17 +180,47 @@
             title="más de 8 caracteres, 1 minuscula, mayuscula, número y caracter especial" >
 
         </div>
+        <div>
+            <label for="usertype">Tipo de usuario: </label>
+            <select name="usertype" id="usertype" required="required">
+                <option value="">Seleccione un tipo de usuario</option>
+                <option value="sale">Vendedor</option>
+                <option value="buy">Comprador</option>
+            </select>
+        </div>
         <input type="submit" name="btnRegistrar" value="Register" class='button-r'>
     </form>
 
     <?php
     require_once "tools.php";
+    
+
+    if(isset($_POST['usertype'])){
+        $usertype = $_POST['usertype'];
+        if($usertype == 'sale'){
+            $usertype = 'Vendedor';
+        }else if($usertype == 'buy'){
+            $usertype = 'Comprador';
+        }
+
+        $_SESSION['usertype'] = $usertype;
+    }
+
     if (isset($_POST['name'])) {
         $_SESSION['username'] =  $_POST['username'];
         $_SESSION['password'] =  $_POST['password'];
+
+        $_SESSION['name'] =  $_POST['name'];
+        $_SESSION['lastname'] =  $_POST['lastname'];
+        $_SESSION['fecha'] =  $_POST['fecha'];
+        $_SESSION['color'] =  $_POST['color'];
+        $_SESSION['email'] =  $_POST['email'];
+        $_SESSION['web'] =  $_POST['web'];
+        $_SESSION['tipodoc'] =  $_POST['tipodoc'];
+
         if($_POST['password'] == $_POST['confirmpassword']){
-            grabarUsuario($_SESSION['username'], $_SESSION['password']);
-            header("Location: login.php");
+            grabarUsuario($_SESSION['username'], $_SESSION['password'], $_SESSION['name'], $_SESSION['lastname'], $_SESSION['fecha'], $_SESSION['color'], $_SESSION['email'], $_SESSION['web'], $_SESSION['tipodoc'], $_SESSION['usertype']);
+            // header("Location: login.php");
         }else{
             echo "Las contraseñas no coinciden";
         }

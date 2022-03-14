@@ -32,7 +32,6 @@
 
     <?php
     require_once './tools.php';
-    session_start();
 
     
     $tweet = $_POST['tweet'] ?? '';
