@@ -74,15 +74,15 @@ if (isset($_SESSION['username'])) {
                     if ($tweetS[0] == $userTweet) {
                         echo '<form method="get">';
                         echo '    <div>';
-                        echo '        <input type="hidden" name="tweet" value="<?php echo $tweetS[1]; ?>">';
-                        echo '        <input type="hidden" name="date" value="<?php echo $tweetS[2]; ?>">';
+                        echo '        <input type="hidden" name="tweet" value="'. $tweetS[1] .'">';
+                        echo '        <input type="hidden" name="date" value="'. $tweetS[2] .'">';
                         echo '        <input type="submit" value="Eliminar">';
                         echo '    </div>';
                         echo '</form>';
                         if (isset($_GET['tweet'])) {
                             $tweet = $_GET['tweet'];
                             $date = $_GET['date'];
-                            eliminarTweet($tweet, $date);
+                            eliminarTweet($_SESSION['username'], $tweet, $date);
                         }
                     }
                 }

@@ -201,12 +201,21 @@ function restorepassword($usuario, $claveactual, $clavenueva, $confirmpassword)
  * @param $tweet: tweet del usuario
  * @return void
  */
-function eliminarTweet($tweet,$fecha)
+function eliminarTweet($usuario, $tweet, $fecha)
 {
     // Eliminar el registro que corresponde con el usuario y tweet
     $file = "tweet.txt";
-    // $fp = fopen($file, "r");
-    // $texto = fread($fp, filesize($file));
+    $fp = fopen($file, "r");
+    $texto = fread($fp, filesize($file));
+    fclose($fp);
+
+    $texto = str_replace($usuario . ":" . $tweet . ":" . $fecha ."\n", "", $texto);
+
+    $fp = fopen($file, "w");
+    fwrite($fp, $texto);
+    fclose($fp);
+
+
     // $tweets = explode("\n", $texto);
     // $texto2 = "";
     // foreach ($tweets as $t) {
@@ -220,11 +229,11 @@ function eliminarTweet($tweet,$fecha)
     // $fp = fopen($file, "w");
     // fwrite($fp, $texto2);
     // fclose($fp);
-    $data = $_SESSION['username'].':'.$tweet.':'.$fecha;
-    $delete = join(';', file('tweet.txt'));
-    $delete = str_replace($data, '', $delete);
-    $delete = str_replace(':', '', $delete);
-    file_put_contents('tweet.txt', $delete);
+//     $data = $_SESSION['username'].':'.$tweet.':'.$fecha;
+//     $delete = join(';', file('tweet.txt'));
+//     $delete = str_replace($data, '', $delete);
+//     $delete = str_replace(':', '', $delete);
+//     file_put_contents('tweet.txt', $delete);
 }
 
 /**
@@ -343,7 +352,7 @@ function mostrarPerfil($usuario){
  * @param $usertype: tipo de usuario
  * @return void
  */
-function actualizarPerfil($nombre, $apellido, $fecha, $tipodoc, $documento, $hijos, $color, $usuario, $usertype)
+function actualizarPerfil($nombre, $apellido, $fecha, $tipodoc, $documento, $hijos, $color, $usuario, $usertype, $usuarioactual)
 {
     $file = "usuario.txt";
     $fp = fopen($file, "r");
@@ -353,8 +362,8 @@ function actualizarPerfil($nombre, $apellido, $fecha, $tipodoc, $documento, $hij
     foreach ($usuarios as $u) {
         $usuS = explode(":", $u);
         $username = $usuS[7] ?? "";
-        if ($username == $usuario) {
-            $texto2 = $texto2 . $nombre . ":" . $apellido . ":" . $fecha . ":" . $tipodoc . ":" . $documento . ":" . $hijos . ":" . $color . ":" . $usuario . ":" . $usertype . "\n";
+        if ($username == $usuarioactual) {
+            $texto2 = $texto2 . $nombre . ":" . $apellido . ":" . $fecha . ":" . $tipodoc . ":" . $documento . ":" . $hijos . ":" . $color . ":" . $usuario . ":" . $usuS[8] . ":" . $usertype . "\n";
         } else {
             $texto2 = $texto2 . $u . "\n";
         }

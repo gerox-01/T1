@@ -17,7 +17,6 @@
     require_once('./nav.php');
 
     LimpiarEntradas();
-    // IniciarSesionSegura();
 
     $user = $_SESSION['username'];
     $data = mostrarPerfil($user);
@@ -62,7 +61,11 @@
         $usuario = $_POST['usuario'];
         $usertype = $_POST['usertype'];
 
-        actualizarPerfil($nombre, $apellidos, $fecha, $tipodoc, $documento, $hijos, $color, $usuario, $usertype);
+        if(actualizarPerfil($nombre, $apellidos, $fecha, $tipodoc, $documento, $hijos, $color, $usuario, $usertype, $user)){
+            echo '<script>alert("Perfil actualizado correctamente")</script>';
+        } else {
+            echo '<script>alert("Error al actualizar el perfil")</script>';
+        }
     }
     ?>
 </body>

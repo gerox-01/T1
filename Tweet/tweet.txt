@@ -1,3 +1,2 @@
 comprador:aaaaaaaaaaaa:03-17-2022
 comprador:eeeeeeeeeeeeeee:03-17-2022
-vendedor:eeeeeeeeeeeeeeeeeeeeeeeeeeee:03-17-2022
