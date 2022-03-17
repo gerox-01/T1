@@ -139,6 +139,19 @@
             <input class="r-options" type="date" name="fecha" id="fecha" required="required">
         </div>
         <div>
+            <label for="tipodoc">Tipo de documento:</label>
+            <select class="r-selected" name="tipodoc" id="tipodoc" required="required">
+                <option value="">Seleccione una opción</option>
+                <option value="CC">Cédula de ciudadanía</option>
+                <option value="CE">Cédula de extranjería</option>
+                <option value="TI">Tarjeta de identidad</option>
+            </select>
+        </div>
+        <div>
+            <label for="numdoc">Numero de documento:</label>
+            <input class="r-options" type="text" name="numdoc" id="numdoc" required="required">
+        </div>
+        <div>
             <label for='color'>Color favorito:</label>
             <input class="r-options" type='color' name='color' id='color' required='required'>
         </div>
@@ -152,15 +165,6 @@
             <input class="r-options" type="url" name="web" id="web" required="required" 
             pattern="[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)"
             title="Escriba url correctamente">
-        </div>
-        <div>
-            <label for="tipodoc">Tipo de documento:</label>
-            <select class="r-selected" name="tipodoc" id="tipodoc" required="required">
-                <option value="">Seleccione una opción</option>
-                <option value="CC">Cédula de ciudadanía</option>
-                <option value="CE">Cédula de extranjería</option>
-                <option value="TI">Tarjeta de identidad</option>
-            </select>
         </div>
         <div>
             <label for="username">Username:</label>

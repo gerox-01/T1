@@ -124,34 +124,34 @@ function leerTweet()
         $tweets = explode("\n", $texto);
 
         fclose($fp);
-            return $tweets;
-        }else{
-            return 'Hola';
-        }
+        return $tweets;
+    } else {
+        return 'Hola';
+    }
 
-        // foreach ($tweets as $t) {
-        //     $datos = explode(":", $t);
-            
-        //         if(isset($_SESSION['username'])){
-        //             if($datos[0]==$_SESSION['username']){
-        //                 echo "<a href='delete.php?id=$datos[3]'><button class='btn btn-danger'>Eliminar</button></a>";
-        //             }
-        //         }
-        //     }
-        //     fclose($fp);
-        //     return $datos;
-            
-        // }
-        // return $tweets;
+    // foreach ($tweets as $t) {
+    //     $datos = explode(":", $t);
 
-        // if($fs > 0){
-        //     $texto = fread($fp, filesize($file));
-        //     $tweets = explode("\n", $texto);
-        //     fclose($fp);
-        //     return $tweets;
-        // }else{
-        //     return 'Hola';
-        // }
+    //         if(isset($_SESSION['username'])){
+    //             if($datos[0]==$_SESSION['username']){
+    //                 echo "<a href='delete.php?id=$datos[3]'><button class='btn btn-danger'>Eliminar</button></a>";
+    //             }
+    //         }
+    //     }
+    //     fclose($fp);
+    //     return $datos;
+
+    // }
+    // return $tweets;
+
+    // if($fs > 0){
+    //     $texto = fread($fp, filesize($file));
+    //     $tweets = explode("\n", $texto);
+    //     fclose($fp);
+    //     return $tweets;
+    // }else{
+    //     return 'Hola';
+    // }
 }
 
 
@@ -199,25 +199,24 @@ function restorepassword($usuario, $claveactual, $clavenueva, $confirmpassword)
  */
 function eliminarTweet($usuario, $tweet)
 {
+    // Eliminar el registro que corresponde con el usuario y tweet
     $file = "tweet.txt";
     $fp = fopen($file, "r");
     $texto = fread($fp, filesize($file));
     $tweets = explode("\n", $texto);
-    $textot = "";
+    $texto2 = "";
     foreach ($tweets as $t) {
-        $tuit = explode(":", $t);
-        if ($tuit[0] == $usuario && $tuit[1] == $tweet) {
-            $textot = str_replace($t, "", $texto);
+        $datos = explode(":", $t);
+        if ($datos[0] == $usuario && $datos[1] == $tweet) {
+            $texto2 = str_replace($t, "", $texto);
+        }else{
+            $texto2 = $texto2 . $t . "\n";
         }
-        // else{
-            $textot .= $t . "\n";
-        // }
-
     }
-    fclose($fp);
     $fp = fopen($file, "w");
-    fwrite($fp, $textot);
+    fwrite($fp, $texto2);
     fclose($fp);
+        
 }
 
 

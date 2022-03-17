@@ -1,4 +1,12 @@
 <?php
+
+/**
+ * Autores: Alejandro Monroy & Gerónimo Quiroga
+ * Fecha: 19/03/2022
+ * Materia: Linea de profundización 2
+ * Descripción: parcial 1
+ */
+
 header('Content-Type: text/html; charset=UTF-8');
 require_once('./nav.php');
 if (isset($_SESSION['username'])) {
