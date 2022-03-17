@@ -7,8 +7,11 @@
  * Descripción: parcial 1
  */
 
+
 header('Content-Type: text/html; charset=UTF-8');
 require_once('./nav.php');
+
+
 if (isset($_SESSION['username'])) {
     $user = $_SESSION['username'];
 } else {
@@ -35,7 +38,8 @@ if (isset($_SESSION['username'])) {
 
     <?php
     require_once('./tools.php');
-
+    LimpiarEntradas();
+    IniciarSesionSegura();
     //Iniciar sesión
     $tweet = leerTweet();
 

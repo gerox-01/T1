@@ -14,11 +14,15 @@
 <body>
 
     <?php
+    require_once "tools.php";
     require_once './nav.php';
+    LimpiarEntradas();
+    IniciarSesionSegura();
     ?>
 
 
     <?php
+    #region Variables
     $name = '';
     $nameErr ='';
     $lastname = '';
@@ -37,6 +41,7 @@
     $confirmpassword = '';
     $confirmpasswordErr = '';
     $fechanacimiento;
+    #endregion
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (empty($_POST["name"])) {
@@ -54,7 +59,6 @@
         }else {
             $email = test_input($_POST["email"]);
             
-            // check if e-mail address is well-formed
             if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $emailErr = "Invalid email format"; 
             }
@@ -117,20 +121,18 @@
         }
         
     }
-
-
     
     ?>
     
 
     <form method="post" class="form-register" id="style-5">
         <div>
-            <label for="name">Name:</label>
+            <label for="name">Nombre:</label>
             <input class="r-options" type="text" name="name" id="name" required="required"
             pattern="([A-Za-z0-9\. -]+)"title="Escriba el nombre">
         </div>
         <div>
-            <label for="lastname">Lastname:</label>
+            <label for="lastname">Apellido:</label>
             <input class="r-options" type="text" name="lastname" id="lastname" required="required" 
             pattern="([A-Za-z0-9\. -]+)"title="Escriba apellidos" >
         </div>
@@ -151,38 +153,37 @@
             <label for="numdoc">Numero de documento:</label>
             <input class="r-options" type="text" name="numdoc" id="numdoc" required="required">
         </div>
+        <!-- Foto del usuario -->
+        <div>
+            <label for="foto">Foto:</label>
+            <input class="r-options" type="file" name="foto" id="foto" required="required">
+        </div>
+        <!-- Numero de hijos -->
+        <div>
+            <label for="numhijos">Numero de hijos:</label>
+            <input class="r-options" type="number" name="numhijos" id="numhijos" required="required">
+        </div>
+        <!-- Color favorito del usuario -->
         <div>
             <label for='color'>Color favorito:</label>
             <input class="r-options" type='color' name='color' id='color' required='required'>
         </div>
         <div>
-            <label for="email">Correo:</label>
-            <input class="r-options" type="email" name="email" id="email" required="required" 
-            pattern = "^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"title="Escriba correo correctamente">
-        </div>
-        <div>
-            <label for="web">Portal web:</label>
-            <input class="r-options" type="url" name="web" id="web" required="required" 
-            pattern="[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)"
-            title="Escriba url correctamente">
-        </div>
-        <div>
-            <label for="username">Username:</label>
+            <label for="username">Usuario:</label>
             <input class="r-options" type="text" name="username" id="username" required="required"
             pattern="^[a-z0-9_-]{3,16}$"title="Escriba usuario sin espacios y tildes, mas de 3 y menos de 13  caracteres">
         </div>
         <div>
-            <label for="password">Password:</label>
+            <label for="password">Contraseña:</label>
             <input class="r-options" type="password" name="password" id="password" required="required"
             pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$"
             title="más de 8 caracteres, 1 minuscula, mayuscula, número y caracter especial">
         </div>
         <div>
-            <label for="confirmpassword">Confirm Password:</label>
+            <label for="confirmpassword">Confirmar contraseña:</label>
             <input class="r-options" type="password" name="confirmpassword" id="confirmpassword" required="required"
             pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$"
             title="más de 8 caracteres, 1 minuscula, mayuscula, número y caracter especial" >
-
         </div>
         <div>
             <label for="usertype">Tipo de usuario: </label>
@@ -192,13 +193,12 @@
                 <option value="buy">Comprador</option>
             </select>
         </div>
-        <input type="submit" name="btnRegistrar" value="Register" class='button-r'>
+        <input type="submit" name="btnRegistrar" value="Registrarse" class='button-r'>
     </form>
 
     <?php
-    require_once "tools.php";
     
-
+    #region TipodeUsuario
     if(isset($_POST['usertype'])){
         $usertype = $_POST['usertype'];
         if($usertype == 'sale'){
@@ -209,24 +209,27 @@
 
         $_SESSION['usertype'] = $usertype;
     }
+    #endregion
 
+    #region GuardarDatos
     if (isset($_POST['name'])) {
-        $_SESSION['username'] =  $_POST['username'];
-        $_SESSION['password'] =  $_POST['password'];
-
-        $_SESSION['name'] =  $_POST['name'];
+        $_SESSION['name'] = $_POST['name'];
         $_SESSION['lastname'] =  $_POST['lastname'];
         $_SESSION['fecha'] =  $_POST['fecha'];
-        $_SESSION['color'] =  $_POST['color'];
-        $_SESSION['email'] =  $_POST['email'];
-        $_SESSION['web'] =  $_POST['web'];
         $_SESSION['tipodoc'] =  $_POST['tipodoc'];
+        $_SESSION['numdoc'] =  $_POST['numdoc'];
+        // $_SESSION['foto'] = $_FILES['foto']['name'];
+        $_SESSION['numhijos'] =  $_POST['numhijos'];
+        $_SESSION['color'] =  $_POST['color'];
+        $_SESSION['username'] =  $_POST['username'];
+        $_SESSION['password'] =  $_POST['password'];
+        $_SESSION['confirmpassword'] =  $_POST['confirmpassword'];
+        $_SESSION['usertype'] =  $_POST['usertype'];
 
         if($_POST['password'] == $_POST['confirmpassword']){
-            grabarUsuario($_SESSION['username'], $_SESSION['password'], $_SESSION['name'], $_SESSION['lastname'], $_SESSION['fecha'], $_SESSION['color'], $_SESSION['email'], $_SESSION['web'], $_SESSION['tipodoc'], $_SESSION['usertype']);
-            // header("Location: login.php");
+            grabarUsuario($_SESSION['name'], $_SESSION['lastname'], $_SESSION['fecha'], $_SESSION['tipodoc'], $_SESSION['numdoc'],  $_SESSION['numhijos'], $_SESSION['color'], $_SESSION['username'], $_SESSION['password'], $_SESSION['usertype']);
         }else{
-            echo "Las contraseñas no coinciden";
+            echo "<p style='color:red;'>Las contraseñas no coinciden</p>";
         }
     }
     ?>

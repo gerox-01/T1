@@ -14,6 +14,9 @@
 <body>
 
     <?php
+    
+    LimpiarEntradas();
+    IniciarSesionSegura();
     require_once './nav.php';
     $tweet = $_POST['tweet'] ?? '';
     ?>

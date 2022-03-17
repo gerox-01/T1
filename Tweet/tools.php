@@ -15,7 +15,7 @@ function iniciarSesion()
  *    @param $usuario: nombre de usuario
  *    @param $clave: clave del usuario
  */
-function grabarUsuario($usuario, $clave, $name, $lastname, $fecha, $color, $email, $web, $tipodoc, $usertype)
+function grabarUsuario($name, $lastname, $fecha, $tipodoc, $numdoc, $numhijos, $color, $username, $password, $usertype)
 {
 
     // a = append = agregar al final
@@ -23,7 +23,7 @@ function grabarUsuario($usuario, $clave, $name, $lastname, $fecha, $color, $emai
     // r = read = leer
 
     $file = "usuario.txt";
-    $texto = $usuario . ":" . $clave . ":" . $name . ":" . $lastname . ":" . $fecha . ":" . $color . ":" . $email . "," . $web . ":" . $tipodoc . ":" . $usertype . "\n";
+    $texto = $name . ":" . $lastname . ":" . $fecha . ":" . $tipodoc . ":" . $numdoc . ":" . $numhijos . ":" . $color . ":" . $username . ":" . $password . ":" . $usertype . "\n";
     $fp = fopen($file, "a");
     fwrite($fp, $texto);
     fclose($fp);
@@ -44,12 +44,14 @@ function getUserType($usuario, $clave)
     $texto = fread($fp, filesize($file));
     $usuarios = explode("\n", $texto);
 
+
     if ($usuario == "" || $usuario == null && $clave == "" || $clave == null) {
-        return "";
+        $usertype = "";
     } else {
         foreach ($usuarios as $u) {
             $user = explode(":", $u);
-            if ($user[0] == $usuario && $user[1] == $clave) {
+            $username = $user[7] ?? "";
+            if ($username == $usuario && $user[8] == $clave) {
                 $usertype = $user[9];
             }
         }
@@ -82,7 +84,7 @@ function leerUsuario($usuario, $clave)
     $usuarios = explode("\n", $texto);
     foreach ($usuarios as $u) {
         $usuS = explode(":", $u);
-        if ($usuS[0] == $usuario && $usuS[1] == $clave) {
+        if ($usuS[7] == $usuario && $usuS[8] == $clave) {
             return True;
         }
     }
@@ -170,10 +172,11 @@ function restorepassword($usuario, $claveactual, $clavenueva, $confirmpassword)
     $usuarios = explode("\n", $texto);
     foreach ($usuarios as $u) {
         $usuS = explode(":", $u);
-        if ($usuS[0] == $usuario && $usuS[1] == $claveactual) {
+        $username = $usuS[7] ?? "";
+        if ($username == $usuario && $usuS[8] == $claveactual) {
             if ($confirmpassword == $clavenueva) {
-                $usuS[1] = str_replace($usuario, $claveactual, $clavenueva);
-                $texto2 = $usuS[0] . ":" . $usuS[1];
+                $usuS[8] = str_replace($usuario, $claveactual, $clavenueva);
+                $texto2 = $username . ":" . $usuS[8];
                 $textot = str_replace($u, $texto2, $texto);
                 $fp = fopen($file, "w");
                 fwrite($fp, $textot);
@@ -209,14 +212,94 @@ function eliminarTweet($usuario, $tweet)
         $datos = explode(":", $t);
         if ($datos[0] == $usuario && $datos[1] == $tweet) {
             $texto2 = str_replace($t, "", $texto);
-        }else{
+        } else {
             $texto2 = $texto2 . $t . "\n";
         }
     }
     $fp = fopen($file, "w");
     fwrite($fp, $texto2);
     fclose($fp);
-        
+}
+
+/**
+ * Limpiar Cadena de texto para evitar inyecciones
+ * Authored by: David Quiroga and Alejandro Monroy
+ */
+function LimpiarCadena($cadena)
+{
+    $patron = array('/<script>.*<\/script>/');
+    $cadena = preg_replace($patron, '', $cadena);
+    $cadena = htmlspecialchars($cadena);
+    return $cadena;
+}
+
+/**
+ * Limpiar entradas de texto utilizando la funcion limpiar cadena de texto
+ * Authored by: David Quiroga and Alejandro Monroy
+ */
+function LimpiarEntradas()
+{
+    if (isset($_POST)) {
+        foreach ($_POST as $key => $value) {
+            $_POST[$key] = LimpiarCadena($value);
+        }
+    }
+}
+
+/**
+ * Iniciar sesión segura con Cookies
+ * Authored by: David Quiroga and Alejandro Monroy
+ */
+function IniciarSesionSegura()
+{
+
+    //Validar si ya existe una conexion activa
+    if (session_status() == PHP_SESSION_NONE) {
+        //Obtener los parametros de la cookie de sesión
+        $cookieParams = session_get_cookie_params();
+        $path = $cookieParams['path'];
+
+        //Inicio y control de la sesión
+        $secure = false;
+        $httponly = true;
+        $samesite = 'strict';
+
+        session_set_cookie_params([
+            'lifetime' => $cookieParams['lifetime'],
+            'path' => $path,
+            'domain' => $_SERVER['HTTP_HOST'],
+            'secure' => $secure,
+            'httponly' => $httponly,
+            'samesite' => $samesite
+        ]);
+
+        session_start();
+        session_regenerate_id(true);
+    } else {
+        if (session_status() == PHP_SESSION_ACTIVE) {
+            session_destroy();
+            //Obtener los parametros de la cookie de sesión
+            $cookieParams = session_get_cookie_params();
+            $path = $cookieParams['path'];
+
+            //Inicio y control de la sesión
+            $secure = false;
+            $httponly = true;
+            $samesite = 'strict';
+
+            session_set_cookie_params([
+                'lifetime' => $cookieParams['lifetime'],
+                'path' => $path,
+                'domain' => $_SERVER['HTTP_HOST'],
+                'secure' => $secure,
+                'httponly' => $httponly,
+                'samesite' => $samesite
+            ]);
+
+            session_start();
+            session_regenerate_id(true);
+        }
+    }
 }
 
 
