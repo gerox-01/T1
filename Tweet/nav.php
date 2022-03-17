@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -42,8 +40,8 @@
             </div>
             <div>
                 <?php
-                $_SESSION['username'] = $_SESSION['username'] ?? '';    
-                if ($_SESSION['username'] == '' || $_SESSION['username'] == null && $_SESSION['password'] == '' || $_SESSION['password'] == null ) {
+                $_SESSION['username'] = $_SESSION['username'] ?? '';
+                if ($_SESSION['username'] == '' || $_SESSION['username'] == null && $_SESSION['password'] == '' || $_SESSION['password'] == null) {
                     echo "<p>No estás logueado</p>";
                 } else {
                     $usertype = getUserType($_SESSION['username'], $_SESSION['password']);
@@ -60,9 +58,33 @@
             </div>
             <div>
                 <?php
-                if(isset($_SESSION['username'])){
+                // $_SESSION['archivo'] = $_SESSION['archivo'] ?? '';
+                $filef  = leerImagen($_SESSION['username']);
+                if (isset($filef)) {
+
+                    if ($filef != '') {
+                        // echo 'sirve!!!';
+                        echo '<b>Foto:</b><br><img style="height:100px; width: 100px;"  src="' . $filef . '"><br><br>';
+                    } else {
+                        echo '';
+                    }
+                } else {
+                    // $foto = $_SESSION['archivo'];
+                    // echo '$foto';
+                    // echo "<img src=".$foto." height=200 width=300 />";
+                    // echo '
+                    echo "No sirve";
+                }
+                ?>
+            </div>
+
+
+
+            <div>
+                <?php
+                if (isset($_SESSION['username'])) {
                     echo "<p>Bienvenido " . $_SESSION['username'] . "</p>";
-                }else{
+                } else {
                     echo "<p>No estás logueado</p>";
                 }
                 ?>

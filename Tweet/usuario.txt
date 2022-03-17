@@ -1,2 +1,4 @@
 pass:Prueba123.:Geronimo Quiroga:word:2001-01-01:#000000:gedaquito@gmail.com:https://api.flutter.dev/index.html:CE:Comprador
-vende:Prueba123.:Vendedor:Uno:2001-01-01:#000000:gedaquito@gmail.com,https://api.flutter.dev/index.html:CC:Vendedor
+vende:Prueba123.:Vendedor:Uno:2001-01-01:#000000:gedaquito@gmail.com:https://api.flutter.dev/index.html:CC:Vendedor
+amonroy5:Amonroy2022*:ALEJANDRO:monroy fernandez:2022-03-07:#000000:alejomonroyf@gmail.com:https://www.regextester.com/93648:CC:Vendedor:../uploaded_files/6233ad1e6d5f50.19394027.jpg
+amonroy5:Amonroy2022*:ALEJANDRO:monroy fernandez:2022-03-20:#000000:alejomonroyf@gmail.com:https://www.regextester.com/93648:CE:Comprador:../uploaded_files/6233aea3541634.92723953.jpg
