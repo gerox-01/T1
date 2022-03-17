@@ -1,3 +1,7 @@
 
-Comprador:Prueba:2001-02-01:CC:1000185288:2:#a31f1f:comprador:Prueba123.:buy
-Vendedor:Prueba:2000-02-02:CC:154524544:6:#000000:vendedor:Prueba123.:sale
+Compradoraaa:Prueba:2001-02-01:CC:1000185288:2:#a31f1f:comprador:Comprador
+Vendedor:Prueba:2000-02-02:CC:154524544:6:#000000:vendedor:Prueba123.:Vendedor
+
+
+
+

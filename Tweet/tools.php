@@ -84,7 +84,8 @@ function leerUsuario($usuario, $clave)
     $usuarios = explode("\n", $texto);
     foreach ($usuarios as $u) {
         $usuS = explode(":", $u);
-        if ($usuS[7] == $usuario && $usuS[8] == $clave) {
+        $usua = $usuS[7] ?? "";
+        if ($usua == $usuario && $usuS[8] == $clave) {
             return True;
         }
     }
@@ -254,7 +255,7 @@ function IniciarSesionSegura()
 {
 
     //Validar si ya existe una conexion activa
-    if (session_status() == PHP_SESSION_NONE) {
+    // if (session_status() == PHP_SESSION_NONE) {
         //Obtener los parametros de la cookie de sesión
         $cookieParams = session_get_cookie_params();
         $path = $cookieParams['path'];
@@ -275,31 +276,87 @@ function IniciarSesionSegura()
 
         session_start();
         session_regenerate_id(true);
-    } else {
-        if (session_status() == PHP_SESSION_ACTIVE) {
-            session_destroy();
-            //Obtener los parametros de la cookie de sesión
-            $cookieParams = session_get_cookie_params();
-            $path = $cookieParams['path'];
+    // } else {
+    //     if (session_status() == PHP_SESSION_ACTIVE) {
+    //         session_destroy();
+    //         //Obtener los parametros de la cookie de sesión
+    //         $cookieParams = session_get_cookie_params();
+    //         $path = $cookieParams['path'];
 
-            //Inicio y control de la sesión
-            $secure = false;
-            $httponly = true;
-            $samesite = 'strict';
+    //         //Inicio y control de la sesión
+    //         $secure = false;
+    //         $httponly = true;
+    //         $samesite = 'strict';
 
-            session_set_cookie_params([
-                'lifetime' => $cookieParams['lifetime'],
-                'path' => $path,
-                'domain' => $_SERVER['HTTP_HOST'],
-                'secure' => $secure,
-                'httponly' => $httponly,
-                'samesite' => $samesite
-            ]);
+    //         session_set_cookie_params([
+    //             'lifetime' => $cookieParams['lifetime'],
+    //             'path' => $path,
+    //             'domain' => $_SERVER['HTTP_HOST'],
+    //             'secure' => $secure,
+    //             'httponly' => $httponly,
+    //             'samesite' => $samesite
+    //         ]);
 
-            session_start();
-            session_regenerate_id(true);
+    //         session_start();
+    //         session_regenerate_id(true);
+    //     }
+    // }
+}
+
+
+/**
+ * Mostrar datos de perfil del usuario
+ * Authored by: David Quiroga and Alejandro Monroy
+ * @param $usuario: nombre de usuario
+ * @return array con los datos del usuario
+ */
+function mostrarPerfil($usuario){
+    $file = "usuario.txt";
+    $fp = fopen($file, "r");
+    $texto = fread($fp, filesize($file));
+    $usuarios = explode("\n", $texto);
+    foreach ($usuarios as $u) {
+        $usuS = explode(":", $u);
+        $username = $usuS[7] ?? "";
+        if ($username == $usuario) {
+            return $usuS;
         }
     }
+}
+
+/**
+ * Actualizar el perfil del usuario
+ * Authored by: David Quiroga and Alejandro Monroy
+ * @param $nombre: nombre del usuario
+ * @param $apellido: apellido del usuario
+ * @param $fecha: fecha de nacimiento del usuario
+ * @param $tipodoc: tipo de documento del usuario
+ * @param $documento: documento del usuario
+ * @param $hijos: cantidad de hijos del usuario
+ * @param $color: color del usuario
+ * @param $usuario: nombre de Usuario
+ * @param $usertype: tipo de usuario
+ * @return void
+ */
+function actualizarPerfil($nombre, $apellido, $fecha, $tipodoc, $documento, $hijos, $color, $usuario, $usertype)
+{
+    $file = "usuario.txt";
+    $fp = fopen($file, "r");
+    $texto = fread($fp, filesize($file));
+    $usuarios = explode("\n", $texto);
+    $texto2 = "";
+    foreach ($usuarios as $u) {
+        $usuS = explode(":", $u);
+        $username = $usuS[7] ?? "";
+        if ($username == $usuario) {
+            $texto2 = $texto2 . $nombre . ":" . $apellido . ":" . $fecha . ":" . $tipodoc . ":" . $documento . ":" . $hijos . ":" . $color . ":" . $usuario . ":" . $usertype . "\n";
+        } else {
+            $texto2 = $texto2 . $u . "\n";
+        }
+    }
+    $fp = fopen($file, "w");
+    fwrite($fp, $texto2);
+    fclose($fp);
 }
 
 

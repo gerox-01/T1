@@ -40,7 +40,9 @@ if (isset($_SESSION['username'])) {
     require_once('./tools.php');
     LimpiarEntradas();
     IniciarSesionSegura();
-    //Iniciar sesión
+
+
+
     $tweet = leerTweet();
 
 

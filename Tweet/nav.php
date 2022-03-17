@@ -31,6 +31,9 @@
                     <a href='tweet.php'>🐦Tweet</a>
                 </div>
                 <div>
+                    <a href='perfil.php'>🔎 Perfil</a>
+                </div>
+                <div>
                     <a href='./restorepassword.php'>🖊 Cambiar contraseña</a>
                 </div>
                 <div>
@@ -66,9 +69,9 @@
                     $usertype = getUserType($_SESSION['username'], $_SESSION['password']);
 
                     if ($usertype == '' || $usertype == null) {
-                    } else if ($usertype == 'sale') {
+                    } else if ($usertype == 'Vendedor') {
                         echo  $_SESSION['username']  ." es vendedor";
-                    } else if($usertype == 'buy') {
+                    } else if($usertype == 'Comprador') {
                         echo $_SESSION['username'] . " es comprador";
                     }else{
                         echo "";

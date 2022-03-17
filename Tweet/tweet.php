@@ -14,10 +14,13 @@
 <body>
 
     <?php
+    require_once './nav.php';
+    require_once './tools.php';
+
+    session_start();
     
     LimpiarEntradas();
     IniciarSesionSegura();
-    require_once './nav.php';
     $tweet = $_POST['tweet'] ?? '';
     ?>
 
@@ -34,7 +37,6 @@
     </form>
 
     <?php
-    require_once './tools.php';
 
     
     $tweet = $_POST['tweet'] ?? '';

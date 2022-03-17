@@ -1,0 +1,11 @@
+<h1>Perfil de usuario</h1>
+    <p>Nombre: <?php echo $data[0]; ?></p>
+    <p>Apellidos: <?php echo $data[1]; ?></p>
+    <p>Fecha de nacimiento: <?php echo $data[2]; ?></p>
+    <p>Tipo de documento: <?php echo $data[3]; ?></p>
+    <p>Número de documento: <?php echo $data[4]; ?></p>
+    <p>Numero de hijos: <?php echo $data[5]; ?></p>
+    <p>Color favorito: <?php echo $data[6]; ?></p>
+    <p>Usuario: <?php echo $data[7]; ?></p>
+    <p>Contraseña: <?php echo $data[8]; ?></p>
+    <p>Rol: <?php echo $data[9]; ?></p>

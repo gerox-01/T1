@@ -189,8 +189,8 @@
             <label for="usertype">Tipo de usuario: </label>
             <select name="usertype" id="usertype" required="required">
                 <option value="">Seleccione un tipo de usuario</option>
-                <option value="sale">Vendedor</option>
-                <option value="buy">Comprador</option>
+                <option value="Vendedor">Vendedor</option>
+                <option value="Comprador">Comprador</option>
             </select>
         </div>
         <input type="submit" name="btnRegistrar" value="Registrarse" class='button-r'>
@@ -201,9 +201,9 @@
     #region TipodeUsuario
     if(isset($_POST['usertype'])){
         $usertype = $_POST['usertype'];
-        if($usertype == 'sale'){
+        if($usertype == 'Vendedor'){
             $usertype = 'Vendedor';
-        }else if($usertype == 'buy'){
+        }else if($usertype == 'Comprador'){
             $usertype = 'Comprador';
         }
 
