@@ -44,9 +44,9 @@ function getUserType($usuario, $clave)
     $texto = fread($fp, filesize($file));
     $usuarios = explode("\n", $texto);
 
-
+    $usertype = "";
     if ($usuario == "" || $usuario == null && $clave == "" || $clave == null) {
-        $usertype = "";
+        
     } else {
         foreach ($usuarios as $u) {
             $user = explode(":", $u);
@@ -57,7 +57,7 @@ function getUserType($usuario, $clave)
         }
     }
 
-    if ($usertype == "" || $usertype == null) {
+    if ($usertype == "") {
         $usertype = "No existe el usuario";
     }
 
@@ -201,25 +201,30 @@ function restorepassword($usuario, $claveactual, $clavenueva, $confirmpassword)
  * @param $tweet: tweet del usuario
  * @return void
  */
-function eliminarTweet($usuario, $tweet)
+function eliminarTweet($tweet,$fecha)
 {
     // Eliminar el registro que corresponde con el usuario y tweet
     $file = "tweet.txt";
-    $fp = fopen($file, "r");
-    $texto = fread($fp, filesize($file));
-    $tweets = explode("\n", $texto);
-    $texto2 = "";
-    foreach ($tweets as $t) {
-        $datos = explode(":", $t);
-        if ($datos[0] == $usuario && $datos[1] == $tweet) {
-            $texto2 = str_replace($t, "", $texto);
-        } else {
-            $texto2 = $texto2 . $t . "\n";
-        }
-    }
-    $fp = fopen($file, "w");
-    fwrite($fp, $texto2);
-    fclose($fp);
+    // $fp = fopen($file, "r");
+    // $texto = fread($fp, filesize($file));
+    // $tweets = explode("\n", $texto);
+    // $texto2 = "";
+    // foreach ($tweets as $t) {
+    //     $datos = explode(":", $t);
+    //     if ($datos[0] == $usuario && $datos[1] == $tweet) {
+    //         $texto2 = str_replace($t, "", $texto);
+    //     } else {
+    //         $texto2 = $texto2 . $t . "\n";
+    //     }
+    // }
+    // $fp = fopen($file, "w");
+    // fwrite($fp, $texto2);
+    // fclose($fp);
+    $data = $_SESSION['username'].':'.$tweet.':'.$fecha;
+    $delete = join(';', file('tweet.txt'));
+    $delete = str_replace($data, '', $delete);
+    $delete = str_replace(':', '', $delete);
+    file_put_contents('tweet.txt', $delete);
 }
 
 /**

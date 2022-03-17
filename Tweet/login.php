@@ -16,7 +16,7 @@
     require_once('./tools.php');
 
     LimpiarEntradas();
-    IniciarSesionSegura();
+    // IniciarSesionSegura();
 
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {

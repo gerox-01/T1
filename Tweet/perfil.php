@@ -17,17 +17,12 @@
     require_once('./nav.php');
 
     LimpiarEntradas();
-    IniciarSesionSegura();
+    // IniciarSesionSegura();
 
     $user = $_SESSION['username'];
     $data = mostrarPerfil($user);
     ?>
-
-    <!-- Perfil de usuario donde mostrará todos los datos -->
-
-
-
-
+    
     <!-- Actualizar el perfil -->
     <h1>Actualizar perfil</h1>
     <form action="perfil.php" method="post">

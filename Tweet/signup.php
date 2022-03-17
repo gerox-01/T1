@@ -17,7 +17,7 @@
     require_once "tools.php";
     require_once './nav.php';
     LimpiarEntradas();
-    IniciarSesionSegura();
+    // IniciarSesionSegura();
     ?>
 
 

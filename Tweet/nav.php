@@ -13,7 +13,8 @@
 
     <?php
     require_once './tools.php';
-
+    IniciarSesionSegura();
+    
     $usert = '';
     ?>
 
@@ -22,7 +23,6 @@
 
             <div style=" display: flex; flex-direction: row; justify-content: center;  align-items: center;  margin-top: 10px;">
                 <?php
-                session_start();
                 if (isset($_SESSION['username']) && isset($_SESSION['password']) && $_SESSION['username'] != "") {
                     echo "<div>
                     <a href='index.php'>💬 Inicio</a>
@@ -69,12 +69,13 @@
                     $usertype = getUserType($_SESSION['username'], $_SESSION['password']);
 
                     if ($usertype == '' || $usertype == null) {
+                        echo "Ups";
                     } else if ($usertype == 'Vendedor') {
                         echo  $_SESSION['username']  ." es vendedor";
                     } else if($usertype == 'Comprador') {
                         echo $_SESSION['username'] . " es comprador";
                     }else{
-                        echo "";
+                        echo "Hola";
                     }
                 }
                 #endregion

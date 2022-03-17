@@ -16,11 +16,9 @@
     <?php
     require_once './nav.php';
     require_once './tools.php';
-
-    session_start();
     
     LimpiarEntradas();
-    IniciarSesionSegura();
+    // IniciarSesionSegura();
     $tweet = $_POST['tweet'] ?? '';
     ?>
 
