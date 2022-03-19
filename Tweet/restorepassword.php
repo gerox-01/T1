@@ -47,7 +47,7 @@
     $confirmpassword = $_POST['confirmpassword'] ?? '';
 
     if (isset($_POST['passwordn']) == isset($_POST['confirmpassword'])) {
-            $msg = restorepassword($_SESSION['username'], $password, $passwordn, $confirmpassword) ? "Contraseña cambiada exitosamente" : "Contraseña no cambiada";
+            $msg = restorepassword($_SESSION['username'], $passwordn, $confirmpassword) ? "Contraseña cambiada exitosamente" : "Contraseña no cambiada";
 
             echo "<div class='alert'>";
             echo "<p>$msg</p>";

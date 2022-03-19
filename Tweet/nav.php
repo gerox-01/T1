@@ -63,10 +63,10 @@
                 $_SESSION['username'] = $_SESSION['username'] ?? '';
 
                 #region UserType
-                if ($_SESSION['username'] == '' || $_SESSION['username'] == null && $_SESSION['password'] == '' || $_SESSION['password'] == null) {
+                if ($_SESSION['username'] == '' || $_SESSION['username'] == null) {
                     echo "";
                 } else {
-                    $usertype = getUserType($_SESSION['username'], $_SESSION['password']);
+                    $usertype = getUserType($_SESSION['username']);
 
                     if ($usertype == '' || $usertype == null) {
                         echo "Ups";
@@ -92,13 +92,9 @@
                         // echo 'sirve!!!';
                         echo '<b>Foto:</b><br><img style="height:100px; width: 100px;"  src="' . $filef . '"><br><br>';
                     } else {
-                        echo 'NO SIRVEEE!! :(';
+                        echo '';
                     }
                 } else {
-                    // $foto = $_SESSION['archivo'];
-                    // echo '$foto';
-                    // echo "<img src=".$foto." height=200 width=300 />";
-                    // echo '
                     echo "No sirve";
                 }
                 ?>

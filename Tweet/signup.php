@@ -131,10 +131,6 @@
 
     <form method="post" class="form-register" id="style-5" enctype="multipart/form-data">
         <div>
-            <label for="archivo">Foto:</label>
-            <input type="file" name="archivo" id="archivo" accept="image/*" requerid/><br><br>
-        </div>
-        <div>
             <label for="name">Nombre:</label>
             <input class="r-options" type="text" name="name" id="name" required="required"
             pattern="([A-Za-z0-9\. -]+)"title="Escriba el nombre">
@@ -161,7 +157,10 @@
             <label for="numdoc">Numero de documento:</label>
             <input class="r-options" type="text" name="numdoc" id="numdoc" required="required">
         </div>
-       
+        <div>
+            <label for="archivo">Foto:</label>
+            <input type="file" name="archivo" id="archivo" accept="image/*" requerid/><br><br>
+        </div>
         <!-- Numero de hijos -->
         <div>
             <label for="numhijos">Numero de hijos:</label>
@@ -201,9 +200,9 @@
     </form>
 
     <?php
+
     #region CargarImagen
-    if(isset($_POST['btnRegistrar']) )
-    {
+    function loadImage(){
         $archivo = $_FILES['archivo']['name'];
         if(isset($archivo) && $archivo != ""){
             $tipo = $_FILES['archivo']['type'];
@@ -223,7 +222,6 @@
                 if (move_uploaded_file($temp, $fileDestination)) {
                     //Permisos
                     $_SESSION['archivo'] =  $fileDestination;
-                    // $_SESSION['archivo'] =  '../uploaded_files/'.$archivo;
                     echo '<script>alert("Usuario Registrado")</script>';
                     echo '<script>window.location.href="index.php"; </script>';
                 }
@@ -234,6 +232,8 @@
         }
     }
     #endregion
+
+
     #region TipodeUsuario
     if(isset($_POST['usertype'])){
         $usertype = $_POST['usertype'];
@@ -254,7 +254,6 @@
         $_SESSION['fecha'] =  $_POST['fecha'];
         $_SESSION['tipodoc'] =  $_POST['tipodoc'];
         $_SESSION['numdoc'] =  $_POST['numdoc'];
-        // $_SESSION['foto'] = $_FILES['foto']['name'];
         $_SESSION['numhijos'] =  $_POST['numhijos'];
         $_SESSION['color'] =  $_POST['color'];
         $_SESSION['username'] =  $_POST['username'];
@@ -262,7 +261,9 @@
         $_SESSION['confirmpassword'] =  $_POST['confirmpassword'];
         $_SESSION['usertype'] =  $_POST['usertype'];
 
+    
         if($_POST['password'] == $_POST['confirmpassword']){
+            loadImage();
             grabarUsuario($_SESSION['name'], $_SESSION['lastname'], 
             $_SESSION['fecha'], $_SESSION['tipodoc'], $_SESSION['numdoc'],  
             $_SESSION['numhijos'], $_SESSION['color'], $_SESSION['username'], 
