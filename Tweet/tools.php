@@ -321,7 +321,7 @@ function mostrarPerfil($usuario)
  * @param $usertype: tipo de usuario
  * @return void
  */
-function actualizarPerfil($nombre, $apellido, $fecha, $tipodoc, $documento, $hijos, $color, $usertype, $usuarioactual)
+function actualizarPerfil($nombre, $apellido, $fecha, $tipodoc, $documento, $foto, $hijos, $color, $usertype, $usuario)
 {
     $file = "usuario.txt";
     $fp = fopen($file, "r");
@@ -331,8 +331,8 @@ function actualizarPerfil($nombre, $apellido, $fecha, $tipodoc, $documento, $hij
     foreach ($usuarios as $u) {
         $usuS = explode(":", $u);
         $username = $usuS[7] ?? "";
-        if ($username == $usuarioactual) {
-            $texto2 = $texto2 . $nombre . ":" . $apellido . ":" . $fecha . ":" . $tipodoc . ":" . $documento . ":" . $hijos . ":" . $color . ":" . $usuS[7] . ":" . $usuS[8] . ":" . $usertype . "\n";
+        if ($username == $usuario) {
+            $texto2 = $texto2 . $nombre . ":" . $apellido . ":" . $fecha . ":" . $tipodoc . ":" . $documento . ":" . $hijos . ":" . $color . ":" . $usuS[7] . ":" . $usuS[8] . ":" . $usertype . ":" . $foto . "\n";
         } else {
             $texto2 = $texto2 . $u . "\n";
         }

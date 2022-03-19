@@ -43,6 +43,7 @@
     if(isset($_POST['tweet'])){
         $msg = grabarTweet($_SESSION['username'], $tweet, $DateAndTime);
         echo "$msg";
+        header('Location: index.php');
     }
 
 

@@ -75,11 +75,11 @@ if (isset($_SESSION['username'])) {
                     echo "</div>";
 
                     if ($tweetS[0] == $userTweet) {
-                        echo '<form method="get">';
-                        echo '    <div>';
+                        echo '<form method="get" style="margin-top: 0 !important;" >';
+                        echo '    <div style="padding: 0 !important; margin: 0 !important;" >';
                         echo '        <input type="hidden" name="tweet" value="'. $tweetS[1] .'">';
                         echo '        <input type="hidden" name="date" value="'. $tweetS[2] .'">';
-                        echo '        <input type="submit" value="Eliminar">';
+                        echo '        <input style="background: red; color: white; font-weight: bold; border-radius: 10px !important;" type="submit" value="Eliminar">';
                         echo '    </div>';
                         echo '</form>';
                         if (isset($_GET['tweet'])) {

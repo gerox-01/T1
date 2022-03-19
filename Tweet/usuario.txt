@@ -2,10 +2,16 @@
 stella:MONROY:2022-03-15:Cédula de extranjería:41703994:4:#000000:amonroy5:Amonroy2022*:Comprador:../uploaded_files/62355e4baa2d16.03093744.jpg
 stella:MONROY:2022-03-08:Tarjeta de identidad:41703994:3:#000000:amonroy5:Amonroy2022*:Vendedor:../uploaded_files/62355efe789c35.78627727.jpg
 stella:MONROY:2022-03-07:Cédula de extranjería:41703994:2:#000000:amonroy6:$2y$10$5dU7Deq2NQGEd.3EO5fzweqV4WYQps0u4V.i9LX7yXPEzpT7ytFMe:Vendedor:../uploaded_files/6235606d42fd48.93422296.jpg
+David:Torresss:2022-03-03:Cédula de ciudadanía:1000185288:1:#78c8e2:gerox:$2y$10$m3bQgGBxU/3p6QuVQkIFCOWPhPukfB3zhiZLI43S6GorKPq5fMPSa:Vendedor:../uploaded_files/62364d93217597.15147335.jpg
 
 
 
-Geronimo:Quiroga:2022-03-03:Cédula de ciudadanía:1000185288:2:#000000:gerox:$2y$10$m3bQgGBxU/3p6QuVQkIFCOWPhPukfB3zhiZLI43S6GorKPq5fMPSa:Comprador:../uploaded_files/6235d064b12277.61979651.jpg
+
+
+
+
+
+
 
 
 
