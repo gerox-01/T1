@@ -154,7 +154,8 @@ function leerImagen($user)
     $usuarios = explode("\n", $texto);
     foreach ($usuarios as $u) {
         $usuS = explode(":", $u);
-        if ($usuS[0] == $user) {
+        $useri = $usuS[7] ?? "";
+        if ($useri == $user) {
 
             if (!isset($usuS[10])) {
                 $filef = '';
