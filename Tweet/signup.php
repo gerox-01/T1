@@ -41,6 +41,8 @@
     $confirmpassword = '';
     $confirmpasswordErr = '';
     $fechanacimiento;
+    $archivo;
+    $fileDestination;
     #endregion
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -102,7 +104,9 @@
         $tipodoc = $_POST['tipodoc'];
         $num = $_POST['num'];
 
-        if (isset($_POST['email']) && isset($_POST['username']) && isset($_POST['password']) && isset($_POST['confirmpassword'])) {
+        if (isset($_POST['email']) && isset($_POST['username']) && isset($_POST['password']) 
+        && isset($_POST['confirmpassword']) && isset($_POST['archivo'])) {
+            $archivo = $_POST['archivo'];
             $email = $_POST['email'];
             $username = $_POST['username'];
             $password = $_POST['password'];
@@ -125,7 +129,11 @@
     ?>
     
 
-    <form method="post" class="form-register" id="style-5">
+    <form method="post" class="form-register" id="style-5" enctype="multipart/form-data">
+        <div>
+            <label for="archivo">Foto:</label>
+            <input type="file" name="archivo" id="archivo" accept="image/*" requerid/><br><br>
+        </div>
         <div>
             <label for="name">Nombre:</label>
             <input class="r-options" type="text" name="name" id="name" required="required"
@@ -153,11 +161,7 @@
             <label for="numdoc">Numero de documento:</label>
             <input class="r-options" type="text" name="numdoc" id="numdoc" required="required">
         </div>
-        <!-- Foto del usuario -->
-        <div>
-            <label for="foto">Foto:</label>
-            <input class="r-options" type="file" name="foto" id="foto" required="required">
-        </div>
+       
         <!-- Numero de hijos -->
         <div>
             <label for="numhijos">Numero de hijos:</label>
@@ -197,7 +201,39 @@
     </form>
 
     <?php
-    
+    #region CargarImagen
+    if(isset($_POST['btnRegistrar']) )
+    {
+        $archivo = $_FILES['archivo']['name'];
+        if(isset($archivo) && $archivo != ""){
+            $tipo = $_FILES['archivo']['type'];
+            $tamano = $_FILES['archivo']['size'];
+            $temp = $_FILES['archivo']['tmp_name'];
+            
+            $fileExt = explode('.', $archivo);
+            $fileActualExt = strtolower(end($fileExt));
+
+            if (!((strpos($tipo, "gif") || strpos($tipo, "jpeg") || strpos($tipo, "jpg") || strpos($tipo, "png")) && ($tamano < 2000000))) {
+                echo '<script>alert("Error. La extensión o el tamaño de los archivos no es correcta")</script>';
+            }
+            else {
+                //Imagen concuerda, Entra
+                $fileNameNew = uniqid('', true) . "." . $fileActualExt;
+                $fileDestination = '../uploaded_files/'.$fileNameNew;
+                if (move_uploaded_file($temp, $fileDestination)) {
+                    //Permisos
+                    $_SESSION['archivo'] =  $fileDestination;
+                    // $_SESSION['archivo'] =  '../uploaded_files/'.$archivo;
+                    echo '<script>alert("Usuario Registrado")</script>';
+                    echo '<script>window.location.href="index.php"; </script>';
+                }
+                else {
+                    echo '<script>alert("Error. credenciales incorrectas")</script>';
+                }
+            }
+        }
+    }
+    #endregion
     #region TipodeUsuario
     if(isset($_POST['usertype'])){
         $usertype = $_POST['usertype'];
@@ -227,7 +263,10 @@
         $_SESSION['usertype'] =  $_POST['usertype'];
 
         if($_POST['password'] == $_POST['confirmpassword']){
-            grabarUsuario($_SESSION['name'], $_SESSION['lastname'], $_SESSION['fecha'], $_SESSION['tipodoc'], $_SESSION['numdoc'],  $_SESSION['numhijos'], $_SESSION['color'], $_SESSION['username'], $_SESSION['password'], $_SESSION['usertype']);
+            grabarUsuario($_SESSION['name'], $_SESSION['lastname'], 
+            $_SESSION['fecha'], $_SESSION['tipodoc'], $_SESSION['numdoc'],  
+            $_SESSION['numhijos'], $_SESSION['color'], $_SESSION['username'], 
+            $_SESSION['password'], $_SESSION['usertype'], $_SESSION['archivo']);
         }else{
             echo "<p style='color:red;'>Las contraseñas no coinciden</p>";
         }

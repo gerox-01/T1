@@ -24,7 +24,7 @@
     
     <!-- Actualizar el perfil -->
     <h1>Actualizar perfil</h1>
-    <form action="perfil.php" method="post">
+    <form action="perfil.php" method="post" enctype="multipart/form-data">
         <input type="text" name="nombre" placeholder="Nombre" value="<?php echo $data[0]; ?>">
         <input type="text" name="apellidos" placeholder="Apellidos" value="<?php echo $data[1]; ?>">
         <input type="date" name="fecha" placeholder="Fecha de nacimiento" value="<?php echo $data[2]; ?>">
@@ -46,6 +46,7 @@
             <option value="Comprador">Comprador</option>
         </select>
         <!-- <input type="text" name="rol" placeholder="Rol" value="<?php echo $data[9]; ?>"> -->
+        <input type="file" name="archivo" id="archivo" accept="image/*" value="<?php echo $data[10]; ?>">
         <input type="submit" name="actualizar" value="Actualizar">
     </form>
 
@@ -60,8 +61,10 @@
         $color = $_POST['color'];
         $usuario = $_POST['usuario'];
         $usertype = $_POST['usertype'];
+        $fileDestination = $_POST['archivo'];
 
-        if(actualizarPerfil($nombre, $apellidos, $fecha, $tipodoc, $documento, $hijos, $color, $usuario, $usertype, $user)){
+        if(actualizarPerfil($nombre, $apellidos, $fecha, $tipodoc, $documento, $hijos, $color, 
+        $usuario, $usertype, $user, $fileDestination)){
             echo '<script>alert("Perfil actualizado correctamente")</script>';
         } else {
             echo '<script>alert("Error al actualizar el perfil")</script>';

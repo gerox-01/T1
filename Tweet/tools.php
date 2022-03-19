@@ -15,7 +15,7 @@ function iniciarSesion()
  *    @param $usuario: nombre de usuario
  *    @param $clave: clave del usuario
  */
-function grabarUsuario($name, $lastname, $fecha, $tipodoc, $numdoc, $numhijos, $color, $username, $password, $usertype)
+function grabarUsuario($name, $lastname, $fecha, $tipodoc, $numdoc, $numhijos, $color, $username, $password, $usertype, $fileDestination)
 {
 
     // a = append = agregar al final
@@ -23,7 +23,7 @@ function grabarUsuario($name, $lastname, $fecha, $tipodoc, $numdoc, $numhijos, $
     // r = read = leer
 
     $file = "usuario.txt";
-    $texto = $name . ":" . $lastname . ":" . $fecha . ":" . $tipodoc . ":" . $numdoc . ":" . $numhijos . ":" . $color . ":" . $username . ":" . $password . ":" . $usertype . "\n";
+    $texto = $name . ":" . $lastname . ":" . $fecha . ":" . $tipodoc . ":" . $numdoc . ":" . $numhijos . ":" . $color . ":" . $username . ":" . $password . ":" . $usertype . ":" . $fileDestination . "\n";
     $fp = fopen($file, "a");
     fwrite($fp, $texto);
     fclose($fp);
@@ -155,6 +155,42 @@ function leerTweet()
     // }else{
     //     return 'Hola';
     // }
+}
+
+/**
+ * Leer la imagen
+ * Authored by: David Quiroga and Alejandro Monroy
+ * @param $user: nombre del usuario
+ * @return string con el nombre de archivo
+ */
+function leerImagen($user)
+{
+   //Archivo
+   $file = "usuario.txt";
+   //Abrir archivo
+   $fp = fopen($file, "r");
+   //Leer archivo
+   $texto = fread($fp, filesize($file));
+   $filef = "";
+
+   //Explode = separa
+   $usuarios = explode("\n", $texto);
+   foreach ($usuarios as $u) {
+       $usuS = explode(":", $u);
+       if ($usuS[0] == $user) {
+           
+           if (!isset($usuS[11] )){
+               $filef = '';
+               return $filef;
+               
+            }else{
+                
+                $filef = $usuS[11];
+            }
+       }
+   }
+
+   return $filef;
 }
 
 

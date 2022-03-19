@@ -14,7 +14,7 @@
     <?php
     require_once './tools.php';
     IniciarSesionSegura();
-    
+
     $usert = '';
     ?>
 
@@ -71,10 +71,10 @@
                     if ($usertype == '' || $usertype == null) {
                         echo "Ups";
                     } else if ($usertype == 'Vendedor') {
-                        echo  $_SESSION['username']  ." es vendedor";
-                    } else if($usertype == 'Comprador') {
+                        echo  $_SESSION['username']  . " es vendedor";
+                    } else if ($usertype == 'Comprador') {
                         echo $_SESSION['username'] . " es comprador";
-                    }else{
+                    } else {
                         echo "Hola";
                     }
                 }
@@ -82,6 +82,28 @@
 
                 ?>
             </div>
+            <div>
+                <?php
+                // $_SESSION['archivo'] = $_SESSION['archivo'] ?? '';
+                $filef  = leerImagen($_SESSION['username']);
+                if (isset($filef)) {
+
+                    if ($filef != '') {
+                        // echo 'sirve!!!';
+                        echo '<b>Foto:</b><br><img style="height:100px; width: 100px;"  src="' . $filef . '"><br><br>';
+                    } else {
+                        echo 'NO SIRVEEE!! :(';
+                    }
+                } else {
+                    // $foto = $_SESSION['archivo'];
+                    // echo '$foto';
+                    // echo "<img src=".$foto." height=200 width=300 />";
+                    // echo '
+                    echo "No sirve";
+                }
+                ?>
+            </div>
+
         </div>
     </nav>
 

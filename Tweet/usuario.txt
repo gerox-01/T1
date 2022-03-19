@@ -1,3 +1,13 @@
 
-Compradoraaaaaa:Prueba:2001-02-01:CC:1000185288:2:#a31f1f:comprador:Comprador
-Vendedor:Prueba:2000-02-02:CC:154524544:6:#000000:vendedor:Prueba123.:Vendedor
+stella:MONROY:2022-03-15:Cédula de extranjería:41703994:4:#000000:amonroy5:Amonroy2022*:Comprador:../uploaded_files/62355e4baa2d16.03093744.jpg
+stella:MONROY:2022-03-08:Tarjeta de identidad:41703994:3:#000000:amonroy5:Amonroy2022*:Vendedor:../uploaded_files/62355efe789c35.78627727.jpg
+stella:MONROY:2022-03-07:Cédula de extranjería:41703994:2:#000000:amonroy6:Amonroy2022*:Vendedor:../uploaded_files/6235606d42fd48.93422296.jpg
+stella:MONROY:2022-02-28:Cédula de ciudadanía:41703994:3:#000000:amonroy7:Amonroy2022*:Vendedor
+
+
+
+
+
+
+
+
